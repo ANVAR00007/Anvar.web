@@ -108,9 +108,9 @@
     <div id="comments"></div>
 
     <script>
-        const SUPABASE_URL = "https://pwcitmphhthuyjwjkatc.supabase.co";
-        const SUPABASE_KEY = "process.env.SUPABASE_KEY";
-        const supabase = createClient(supabaseUrl, supabaseKey);
+        const SUPABASE_URL = "https://pwcitmphhthuyjwjkatc.supabase.co"; // O'zingizning Project URL ni qo'ying
+        const SUPABASE_KEY = "YOUR_SUPABASE_ANON_KEY"; // Bu yerga Anon Key ni qo'ying
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         async function loadComments() {
             let { data: comments, error } = await supabase
