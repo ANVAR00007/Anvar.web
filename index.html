@@ -68,7 +68,6 @@
     <section id="home">
         <h2>Assalomu Alaykum!</h2>
         <p>Sen Har Doim Yuragimda</p>
-        <img src=https://yandex.ru/images/search?pos=4&from=tabbar&img_url=https%3A%2F%2Fsun9-36.userapi.com%2Fimpf%2FJTGD_x6c1XE28HHSMAFWnjIG6G6D1DSD3TU1PA%2Fw2NcGpCEbpg.jpg%3Fsize%3D1280x800%26quality%3D96%26sign%3D001be52c6d3685a0c6b8c284294259a0%26c_uniq_tag%3DoijpX6keBcSbxLWQDfOvqh20YYMJ2N3gHvYd5LK3yyk%26type%3Dalbum&text=heart+love&rpt=simage&lr=10335>
         <p class="poem">Kulishing,<br>Sochlaring,Ko'zlaring Jonimni Oladi.<br>Zinuura – mening yuragim,<br>Senga muhabbatim abadiy!</p>
     </section>
 
@@ -89,17 +88,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Izohlar</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
         input, textarea { display: block; width: 80%; margin: 10px auto; padding: 10px; }
         button { padding: 10px 20px; cursor: pointer; }
-        .comment { border-bottom: 1px solid #ddd; padding: 10px; }
+        .comment { border-bottom: 1px solid #ddd; padding: 10px; margin: 10px; }
     </style>
 </head>
 <body>
 
-    <h2>Izoh Qoldirish</h2>
+    <h2>Izoh Qoldiring</h2>
     <input type="text" id="name" placeholder="Ismingiz">
     <textarea id="message" placeholder="Izohingizni yozing"></textarea>
     <button onclick="addComment()">Yuborish</button>
@@ -108,28 +106,23 @@
     <div id="comments"></div>
 
     <script>
-        const SUPABASE_URL = "https://pwcitmphhthuyjwjkatc.supabase.co"; // O'zingizning Project URL ni qo'ying
-        const SUPABASE_KEY = "YOUR_SUPABASE_ANON_KEY"; // Bu yerga Anon Key ni qo'ying
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const API_KEY = "$2a$10$U.VvUTBHOWFZ3lZCX9yk/uHnMDuuQo2L7n/8GF1PCT08YpujgNa7G"; 
+        const BIN_ID = "67c1fd71ad19ca34f8142c01"; 
 
         async function loadComments() {
-            let { data: comments, error } = await supabase
-                .from("comments")
-                .select("*")
-                .order("created_at", { ascending: false });
+            let response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+                headers: { "X-Master-Key": API_KEY }
+            });
+            let data = await response.json();
+            let comments = data.record.comments || [];
 
-            if (error) {
-                console.error("Error loading comments:", error);
-                return;
-            }
-
-            let commentSection = document.getElementById("comments");
-            commentSection.innerHTML = "";
+            let commentsDiv = document.getElementById("comments");
+            commentsDiv.innerHTML = "";
             comments.forEach(comment => {
                 let div = document.createElement("div");
                 div.classList.add("comment");
-                div.innerHTML = `<strong>${comment.name}:</strong> ${comment.message} <br><small>${new Date(comment.created_at).toLocaleString()}</small>`;
-                commentSection.appendChild(div);
+                div.innerHTML = `<strong>${comment.name}:</strong> ${comment.message}`;
+                commentsDiv.appendChild(div);
             });
         }
 
@@ -142,11 +135,22 @@
                 return;
             }
 
-            let { data, error } = await supabase.from("comments").insert([{ name, message }]);
-            if (error) {
-                console.error("Error adding comment:", error);
-                return;
-            }
+            let response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+                headers: { "X-Master-Key": API_KEY }
+            });
+            let data = await response.json();
+            let comments = data.record.comments || [];
+
+            comments.push({ name, message });
+
+            await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+                method: "PUT",
+                headers: {
+                    "X-Master-Key": API_KEY,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ comments })
+            });
 
             document.getElementById("name").value = "";
             document.getElementById("message").value = "";
