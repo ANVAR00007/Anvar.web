@@ -83,3 +83,78 @@
     </footer>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Izohlar</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        input, textarea { display: block; width: 80%; margin: 10px auto; padding: 10px; }
+        button { padding: 10px 20px; cursor: pointer; }
+        .comment { border-bottom: 1px solid #ddd; padding: 10px; }
+    </style>
+</head>
+<body>
+
+    <h2>Izoh Qoldirish</h2>
+    <input type="text" id="name" placeholder="Ismingiz">
+    <textarea id="message" placeholder="Izohingizni yozing"></textarea>
+    <button onclick="addComment()">Yuborish</button>
+
+    <h3>Izohlar:</h3>
+    <div id="comments"></div>
+
+    <script>
+        const SUPABASE_URL = "YOUR_SUPABASE_URL";  // Supabase loyihangiz URL sini kiriting
+        const SUPABASE_KEY = "YOUR_SUPABASE_ANON_KEY"; // Supabase Anon Key ni kiriting
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        async function loadComments() {
+            let { data: comments, error } = await supabase
+                .from("comments")
+                .select("*")
+                .order("created_at", { ascending: false });
+
+            if (error) {
+                console.error("Error loading comments:", error);
+                return;
+            }
+
+            let commentSection = document.getElementById("comments");
+            commentSection.innerHTML = "";
+            comments.forEach(comment => {
+                let div = document.createElement("div");
+                div.classList.add("comment");
+                div.innerHTML = `<strong>${comment.name}:</strong> ${comment.message} <br><small>${new Date(comment.created_at).toLocaleString()}</small>`;
+                commentSection.appendChild(div);
+            });
+        }
+
+        async function addComment() {
+            let name = document.getElementById("name").value.trim();
+            let message = document.getElementById("message").value.trim();
+
+            if (!name || !message) {
+                alert("Iltimos, ismingiz va izohingizni kiriting!");
+                return;
+            }
+
+            let { data, error } = await supabase.from("comments").insert([{ name, message }]);
+            if (error) {
+                console.error("Error adding comment:", error);
+                return;
+            }
+
+            document.getElementById("name").value = "";
+            document.getElementById("message").value = "";
+            loadComments();
+        }
+
+        loadComments();
+    </script>
+
+</body>
+</html>
