@@ -123,6 +123,11 @@
             <button id="startButton" class="btn btn-danger">Ovozli Habarni Boshlash</button>
             <p id="result">Ovozli habarni boshlash uchun tugmani bosing.</p>
         </section>
+
+        <h3>Saqlangan Habarlar:</h3>
+        <div id="savedMessages">
+            <!-- Saqlangan habarlar shu yerda ko'rsatiladi -->
+        </div>
     </div>
 
     <footer data-aos="fade-up">
@@ -153,6 +158,7 @@
         // Web Speech API kodlari
         const startButton = document.getElementById('startButton');
         const result = document.getElementById('result');
+        const savedMessages = document.getElementById('savedMessages');
 
         const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         recognition.lang = 'uz-UZ';
@@ -167,6 +173,24 @@
         recognition.onresult = (event) => {
             const transcript = event.results[event.resultIndex][0].transcript;
             result.textContent = "Sizning habar: " + transcript;
+
+            // Habarni serverga yuborish
+            fetch('http://localhost:3000/save-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: transcript })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Habar saqlandi', data);
+                // Saqlangan habarlarni yangilash
+                showSavedMessages();
+            })
+            .catch((error) => {
+                console.error('Xatolik yuz berdi:', error);
+            });
         };
 
         recognition.onerror = (event) => {
@@ -175,6 +199,28 @@
 
         recognition.onend = () => {
             result.textContent += " - Ovozli yozuv tugadi.";
+        };
+
+        // Saqlangan habarlarni ko'rsatish
+        function showSavedMessages() {
+            fetch('http://localhost:3000/get-messages')
+                .then(response => response.json())
+                .then(messages => {
+                    savedMessages.innerHTML = '';  // Eski habarlarni tozalash
+                    messages.forEach(msg => {
+                        let messageElement = document.createElement('p');
+                        messageElement.textContent = msg;
+                        savedMessages.appendChild(messageElement);
+                    });
+                })
+                .catch((error) => {
+                    console.error('Xatolik yuz berdi:', error);
+                });
+        }
+
+        // Sayt yuklanganda saqlangan habarlarni ko'rsatish
+        window.onload = () => {
+            showSavedMessages();
         };
     </script>
 </body>
