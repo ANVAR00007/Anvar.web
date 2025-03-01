@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sen Meni Yuragimda</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #fdf6e3, #e3f2fd);
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
             text-align: center;
         }
         header {
-            background-color: #2196f3;
+            background: linear-gradient(45deg, #ff6f61, #de1f1f);
             color: white;
             padding: 20px;
             font-size: 36px;
@@ -27,18 +28,18 @@
             font-size: 20px;
             padding: 10px 15px;
             border-radius: 5px;
-            background-color: #1976d2;
+            background: #d32f2f;
             transition: all 0.3s;
         }
         nav a:hover {
-            background-color: #ff9800;
+            background: #ff9800;
             color: white;
         }
         .container {
             padding: 40px 20px;
         }
         h2 {
-            color: #1976d2;
+            color: #b71c1c;
             font-weight: bold;
         }
         p, .poem {
@@ -56,11 +57,11 @@
             animation: fadeIn 2s ease-in-out;
         }
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         footer {
-            background-color: #2196f3;
+            background: linear-gradient(45deg, #ff6f61, #de1f1f);
             color: white;
             padding: 15px;
             position: fixed;
@@ -71,15 +72,15 @@
     </style>
 </head>
 <body>
-    <header>Sen Meni Yuragimda</header>
+    <header data-aos="fade-down">Sen Meni Yuragimda</header>
     <nav class="d-flex justify-content-center py-3">
-        <a href="#asalim">Asalim</a>
-        <a href="#yuragimni-egasi">Yuragimni Egasi</a>
-        <a href="#hayotim">Hayotim</a>
+        <a href="#asalim" data-aos="zoom-in">Asalim</a>
+        <a href="#yuragimni-egasi" data-aos="zoom-in">Yuragimni Egasi</a>
+        <a href="#hayotim" data-aos="zoom-in">Hayotim</a>
     </nav>
 
     <div class="container">
-        <section id="home" class="animated-text">
+        <section id="home" class="animated-text" data-aos="fade-up">
             <h2>Assalomu Alaykum, Go‘zal Yulduzim!</h2>
             <p>Sen mening qalbimning eng yorqin yulduzisan.</p>
             <p class="poem">Kulishing, sochlaring, ko'zlaring – <br> 
@@ -88,16 +89,20 @@
             Muhabbatim senga abadiy!</p>
         </section>
 
-        <section id="izhorim" class="animated-text">
+        <section id="izhorim" class="animated-text" data-aos="fade-up">
             <h2>Izhorim</h2>
             <p>Sen mening hayotimdagi eng katta baxtsan!</p>
-        
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Uzbek_plov.jpg" alt="O‘zbek palovi" data-aos="flip-left">
         </section>
     </div>
 
-    <footer>
+    <footer data-aos="fade-up">
         © 2025 Sen – Yuragimda | Ishlab chiqildi: ANVARBEK
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
-
