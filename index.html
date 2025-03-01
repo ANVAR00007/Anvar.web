@@ -71,28 +71,32 @@
             width: 100%;
             font-weight: bold;
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <header data-aos="fade-down">Sen Meni Yuragimda</header>
     <nav class="d-flex justify-content-center py-3">
-        <a href="#asalim" data-aos="zoom-in">Asalim</a>
-        <a href="#yuragimni-egasi" data-aos="zoom-in">Yuragimni Egasi</a>
-        <a href="#hayotim" data-aos="zoom-in">Hayotim</a>
+        <a href="#asalim" onclick="showSection('asalim')" data-aos="zoom-in">Asalim</a>
+        <a href="#yuragimni-egasi" onclick="showSection('yuragimni-egasi')" data-aos="zoom-in">Yuragimni Egasi</a>
+        <a href="#hayotim" onclick="showSection('hayotim')" data-aos="zoom-in">Hayotim</a>
     </nav>
 
     <div class="container">
-        <section id="home" class="animated-text" data-aos="fade-up">
-            <h2>Assalomu Alaykum, Go‘zal Yulduzim!</h2>
+        <section id="asalim" class="hidden animated-text" data-aos="fade-up">
+            <h2>Asalim</h2>
             <p>Sen mening qalbimning eng yorqin yulduzisan.</p>
-            <p class="poem">Kulishing, sochlaring, ko'zlaring – <br> 
-            Go‘yo bahor shabbodasi kabi.<br>
-            Zinnura – mening yuragim,<br>
-            Muhabbatim senga abadiy!</p>
         </section>
-
-        <section id="izhorim" class="animated-text" data-aos="fade-up">
-            <h2>Izhorim</h2>
+        
+        <section id="yuragimni-egasi" class="hidden animated-text" data-aos="fade-up">
+            <h2>Yuragimni Egasi</h2>
+            <p>Sen men uchun bebaho xazinasan.</p>
+        </section>
+        
+        <section id="hayotim" class="hidden animated-text" data-aos="fade-up">
+            <h2>Hayotim</h2>
             <p>Sen mening hayotimdagi eng katta baxtsan!</p>
             <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Uzbek_plov.jpg" alt="O‘zbek palovi" data-aos="flip-left">
         </section>
@@ -105,6 +109,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init();
+
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            let section = document.getElementById(sectionId);
+            if (section) {
+                section.classList.remove('hidden');
+                section.setAttribute('data-aos', 'fade-up');
+                AOS.refresh();
+            }
+        }
     </script>
 </body>
 </html>
+
