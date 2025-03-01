@@ -225,3 +225,55 @@
     </script>
 </body>
 </html>
+<!-- Ovozli Habarni Yuborish -->
+<section id="ovoza" class="mt-5">
+    <h2>Ovozli Habar Qoldirish</h2>
+    <button id="startButton" class="btn btn-danger">Ovozli Habarni Boshlash</button>
+    <p id="result">Ovozli habarni boshlash uchun tugmani bosing.</p>
+</section>
+
+<script>
+    const startButton = document.getElementById('startButton');
+    const result = document.getElementById('result');
+
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'uz-UZ';
+    recognition.continuous = false;
+    recognition.interimResults = true;
+
+    startButton.addEventListener('click', () => {
+        result.textContent = "Ovoz eshitilyapti...";
+        recognition.start();
+    });
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[event.resultIndex][0].transcript;
+        result.textContent = "Sizning habar: " + transcript;
+
+        // Habarni serverga yuborish
+        fetch('http://localhost:3000/save-message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: transcript })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Habar saqlandi:', data);
+        })
+        .catch((error) => {
+            console.error('Xatolik yuz berdi:', error);
+        });
+    };
+
+    recognition.onerror = (event) => {
+        result.textContent = "Xatolik yuz berdi: " + event.error
+    };
+
+    recognition.onend = () => {
+        result.textContent += " - Ovozli yozuv tugadi.";
+    };
+</script>
+
+
