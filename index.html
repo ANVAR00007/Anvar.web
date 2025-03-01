@@ -79,9 +79,9 @@
 <body>
     <header data-aos="fade-down">Sen Meni Yuragimda</header>
     <nav class="d-flex justify-content-center py-3">
-        <a href="#asalim" onclick="showSection('asalim')" data-aos="zoom-in">Asalim</a>
-        <a href="#yuragimni-egasi" onclick="showSection('yuragimni-egasi')" data-aos="zoom-in">Yuragimni Egasi</a>
-        <a href="#hayotim" onclick="showSection('hayotim')" data-aos="zoom-in">Hayotim</a>
+        <a href="#" onclick="showSection('asalim')" data-aos="zoom-in">Asalim</a>
+        <a href="#" onclick="showSection('yuragimni-egasi')" data-aos="zoom-in">Yuragimni Egasi</a>
+        <a href="#" onclick="showSection('hayotim')" data-aos="zoom-in">Hayotim</a>
     </nav>
 
     <div class="container">
@@ -112,12 +112,12 @@
 
         function showSection(sectionId) {
             document.querySelectorAll('section').forEach(section => {
-                section.classList.add('hidden');
+                section.style.display = 'none';
             });
             
             let section = document.getElementById(sectionId);
             if (section) {
-                section.classList.remove('hidden');
+                section.style.display = 'block';
                 section.setAttribute('data-aos', 'fade-up');
                 AOS.refresh();
             }
@@ -125,4 +125,3 @@
     </script>
 </body>
 </html>
-
