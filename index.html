@@ -85,117 +85,11 @@
             width: 100%;
             font-weight: bold;
         }
+
+        /* Parolni kiritish formasi uchun */
         .hidden {
             display: none;
         }
-    </style>
-</head>
-<body>
-    <header data-aos="fade-down">Sen Meni Yuragimda</header>
-    <nav class="d-flex justify-content-center py-3">
-        <a href="#" onclick="showSection('asalim', 'bounce')" data-aos="zoom-in">Asalim</a>
-        <a href="#" onclick="showSection('yuragimni-egasi', 'rotate')" data-aos="zoom-in">Yuragimni Egasi</a>
-        <a href="#" onclick="showSection('hayotim', 'scale')" data-aos="zoom-in">Hayotim</a>
-    </nav>
-
-    <div class="container">
-        <section id="asalim" class="hidden" data-aos="fade-up">
-            <h2>Asalim</h2>
-            <p>Sen mening qalbimning eng yorqin yulduzisan.</p>
-            <div class="z-animation bounce">Z</div>
-        </section>
-        
-        <section id="yuragimni-egasi" class="hidden" data-aos="fade-up">
-            <h2>Yuragimni Egasi</h2>
-            <p>Sen men uchun bebaho xazinasan.</p>
-            <div class="z-animation rotate">Z</div>
-        </section>
-        
-        <section id="hayotim" class="hidden" data-aos="fade-up">
-            <h2>Hayotim</h2>
-            <p>Sen mening hayotimdagi eng katta baxtsan!</p>
-            <div class="z-animation scale">Z</div>
-        </section>
-
-        <!-- Saqlangan Habarlar -->
-        <h3>Saqlangan Habarlar:</h3>
-        <div id="savedMessages">
-            <!-- Saqlangan habarlar shu yerda ko'rsatiladi -->
-        </div>
-    </div>
-
-    <footer data-aos="fade-up">
-        © 2025 Sen – Yuragimda | Ishlab chiqildi: ANVARBEK
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init();
-
-        function showSection(sectionId, animationClass) {
-            document.querySelectorAll('section').forEach(section => {
-                section.style.display = 'none';
-            });
-            
-            let section = document.getElementById(sectionId);
-            if (section) {
-                section.style.display = 'block';
-                section.setAttribute('data-aos', 'fade-up');
-                let zElement = section.querySelector('.z-animation');
-                if (zElement) {
-                    zElement.className = 'z-animation ' + animationClass;
-                }
-                AOS.refresh();
-            }
-        }
-
-        // Saqlangan habarlarni ko'rsatish
-        function showSavedMessages() {
-            fetch('http://localhost:3000/get-messages')
-                .then(response => response.json())
-                .then(messages => {
-                    const savedMessages = document.getElementById('savedMessages');
-                    savedMessages.innerHTML = '';  // Eski habarlarni tozalash
-                    if (messages.length > 0) {
-                        messages.forEach(msg => {
-                            let messageElement = document.createElement('p');
-                            messageElement.textContent = msg;
-                            savedMessages.appendChild(messageElement);
-                        });
-                    } else {
-                        savedMessages.innerHTML = '<p>Hech qanday habar saqlanmagan.</p>';
-                    }
-                })
-                .catch((error) => {
-                    console.error('Xatolik yuz berdi:', error);
-                });
-        }
-
-        // Sayt yuklanganda saqlangan habarlarni ko'rsatish
-        window.onload = () => {
-            showSavedMessages();
-        };
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="uz">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parolni Kiriting</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #f5f5f5;
-        }
-
-        .hidden {
-            display: none;
-        }
-
         .content {
             display: none;
         }
@@ -205,7 +99,6 @@
             font-size: 18px;
         }
 
-        /* Parol input animatsiyasi */
         #password {
             padding: 15px;
             font-size: 20px;
@@ -249,7 +142,6 @@
             background-color: #0097a7;
         }
 
-        /* Asosiy kontentni ko'rsatish uchun */
         #content {
             display: none;
         }
@@ -259,9 +151,92 @@
 <body>
 
     <!-- Parolni kiritish formasi -->
-    <h2>Saytga Kirish</h2>
-    <p>Parolni kiriting:</p>
-    <input type="password" id="password" pla
-const correctPassword = "zinnura";
+    <div id="passwordForm">
+        <h2>Saytga Kirish</h2>
+        <p>Parolni kiriting:</p>
+        <input type="password" id="password" placeholder="Parolni kiriting">
+        <button onclick="checkPassword()">Kirish</button>
+        <p id="error" class="error"></p>
+    </div>
 
+    <div id="content" class="content">
+        <!-- Saytning asosiy kontenti -->
+        <header data-aos="fade-down">Sen Meni Yuragimda</header>
+        <nav class="d-flex justify-content-center py-3">
+            <a href="#" onclick="showSection('asalim', 'bounce')" data-aos="zoom-in">Asalim</a>
+            <a href="#" onclick="showSection('yuragimni-egasi', 'rotate')" data-aos="zoom-in">Yuragimni Egasi</a>
+            <a href="#" onclick="showSection('hayotim', 'scale')" data-aos="zoom-in">Hayotim</a>
+        </nav>
 
+        <div class="container">
+            <section id="asalim" class="hidden" data-aos="fade-up">
+                <h2>Asalim</h2>
+                <p>Sen mening qalbimning eng yorqin yulduzisan.</p>
+                <div class="z-animation bounce">Z</div>
+            </section>
+            
+            <section id="yuragimni-egasi" class="hidden" data-aos="fade-up">
+                <h2>Yuragimni Egasi</h2>
+                <p>Sen men uchun bebaho xazinasan.</p>
+                <div class="z-animation rotate">Z</div>
+            </section>
+            
+            <section id="hayotim" class="hidden" data-aos="fade-up">
+                <h2>Hayotim</h2>
+                <p>Sen mening hayotimdagi eng katta baxtsan!</p>
+                <div class="z-animation scale">Z</div>
+            </section>
+        </div>
+
+        <footer data-aos="fade-up">
+            © 2025 Sen – Yuragimda | Ishlab chiqildi: ANVARBEK
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+
+        const correctPassword = "zinnura"; // Parol
+
+        function checkPassword() {
+            const enteredPassword = document.getElementById("password").value;
+            const errorElement = document.getElementById("error");
+            const contentElement = document.getElementById("content");
+            const passwordField = document.getElementById("password");
+
+            // Xatolikni tozalash
+            errorElement.textContent = "";
+
+            // Parolni tekshirish
+            if (enteredPassword === correctPassword) {
+                // Parol to'g'ri bo'lsa, kontentni ko'rsatish
+                document.getElementById("passwordForm").style.display = "none";
+                contentElement.style.display = "block";
+                document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
+            } else {
+                // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
+                passwordField.classList.add("error");
+                errorElement.textContent = "Xato parol! Iltimos, qayta urinib ko'ring.";
+            }
+        }
+
+        function showSection(sectionId, animationClass) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            let section = document.getElementById(sectionId);
+            if (section) {
+                section.style.display = 'block';
+                section.setAttribute('data-aos', 'fade-up');
+                let zElement = section.querySelector('.z-animation');
+                if (zElement) {
+                    zElement.className = 'z-animation ' + animationClass;
+                }
+                AOS.refresh();
+            }
+        }
+    </script>
+</body>
+</html>
