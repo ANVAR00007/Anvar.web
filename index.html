@@ -146,6 +146,50 @@
             display: none;
         }
 
+        /* Chat qismi */
+        #chatBox {
+            position: fixed;
+            bottom: 0;
+            right: 10px;
+            width: 300px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        #chatMessages {
+            flex-grow: 1;
+            margin-bottom: 10px;
+            overflow-y: scroll;
+        }
+
+        #chatInput {
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: calc(100% - 80px);
+        }
+
+        #sendMessage {
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        #sendMessage:hover {
+            background-color: #0097a7;
+        }
     </style>
 </head>
 <body>
@@ -193,11 +237,20 @@
         </footer>
     </div>
 
+    <!-- Chat qismi -->
+    <div id="chatBox">
+        <div id="chatMessages"></div>
+        <div>
+            <input type="text" id="chatInput" placeholder="Xabar yozing...">
+            <button id="sendMessage" onclick="sendMessage()">Yuborish</button>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init();
 
-        const correctPassword = "jinnivoyim"; // Parol
+        const correctPassword = "zinnura"; // Parol
 
         function checkPassword() {
             const enteredPassword = document.getElementById("password").value;
@@ -235,6 +288,23 @@
                     zElement.className = 'z-animation ' + animationClass;
                 }
                 AOS.refresh();
+            }
+        }
+
+        // Chat xabarlarini yuborish
+        function sendMessage() {
+            const messageInput = document.getElementById("chatInput");
+            const message = messageInput.value.trim();
+            
+            if (message) {
+                const chatMessages = document.getElementById("chatMessages");
+                const newMessage = document.createElement("div");
+                newMessage.textContent = message;
+                chatMessages.appendChild(newMessage);
+
+                // Inputni tozalash
+                messageInput.value = "";
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
         }
     </script>
