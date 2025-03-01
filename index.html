@@ -117,13 +117,7 @@
             <div class="z-animation scale">Z</div>
         </section>
 
-        <!-- Ovozli Habar Qo'shish -->
-        <section id="ovoza" class="mt-5">
-            <h2>Ovozli Habar Qoldirish</h2>
-            <button id="startButton" class="btn btn-danger">Ovozli Habarni Boshlash</button>
-            <p id="result">Ovozli habarni boshlash uchun tugmani bosing.</p>
-        </section>
-
+        <!-- Saqlangan Habarlar -->
         <h3>Saqlangan Habarlar:</h3>
         <div id="savedMessages">
             <!-- Saqlangan habarlar shu yerda ko'rsatiladi -->
@@ -155,63 +149,22 @@
             }
         }
 
-        // Web Speech API kodlari
-        const startButton = document.getElementById('startButton');
-        const result = document.getElementById('result');
-        const savedMessages = document.getElementById('savedMessages');
-
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'uz-UZ';
-        recognition.continuous = false;
-        recognition.interimResults = true;
-
-        startButton.addEventListener('click', () => {
-            result.textContent = "Ovoz eshitilyapti...";
-            recognition.start();
-        });
-
-        recognition.onresult = (event) => {
-            const transcript = event.results[event.resultIndex][0].transcript;
-            result.textContent = "Sizning habar: " + transcript;
-
-            // Habarni serverga yuborish
-            fetch('http://localhost:3000/save-message', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: transcript })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Habar saqlandi', data);
-                // Saqlangan habarlarni yangilash
-                showSavedMessages();
-            })
-            .catch((error) => {
-                console.error('Xatolik yuz berdi:', error);
-            });
-        };
-
-        recognition.onerror = (event) => {
-            result.textContent = "Xatolik yuz berdi: " + event.error;
-        };
-
-        recognition.onend = () => {
-            result.textContent += " - Ovozli yozuv tugadi.";
-        };
-
         // Saqlangan habarlarni ko'rsatish
         function showSavedMessages() {
             fetch('http://localhost:3000/get-messages')
                 .then(response => response.json())
                 .then(messages => {
+                    const savedMessages = document.getElementById('savedMessages');
                     savedMessages.innerHTML = '';  // Eski habarlarni tozalash
-                    messages.forEach(msg => {
-                        let messageElement = document.createElement('p');
-                        messageElement.textContent = msg;
-                        savedMessages.appendChild(messageElement);
-                    });
+                    if (messages.length > 0) {
+                        messages.forEach(msg => {
+                            let messageElement = document.createElement('p');
+                            messageElement.textContent = msg;
+                            savedMessages.appendChild(messageElement);
+                        });
+                    } else {
+                        savedMessages.innerHTML = '<p>Hech qanday habar saqlanmagan.</p>';
+                    }
                 })
                 .catch((error) => {
                     console.error('Xatolik yuz berdi:', error);
@@ -225,55 +178,5 @@
     </script>
 </body>
 </html>
-<!-- Ovozli Habarni Yuborish -->
-<section id="ovoza" class="mt-5">
-    <h2>Ovozli Habar Qoldirish</h2>
-    <button id="startButton" class="btn btn-danger">Ovozli Habarni Boshlash</button>
-    <p id="result">Ovozli habarni boshlash uchun tugmani bosing.</p>
-</section>
-
-<script>
-    const startButton = document.getElementById('startButton');
-    const result = document.getElementById('result');
-
-    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = 'uz-UZ';
-    recognition.continuous = false;
-    recognition.interimResults = true;
-
-    startButton.addEventListener('click', () => {
-        result.textContent = "Ovoz eshitilyapti...";
-        recognition.start();
-    });
-
-    recognition.onresult = (event) => {
-        const transcript = event.results[event.resultIndex][0].transcript;
-        result.textContent = "Sizning habar: " + transcript;
-
-        // Habarni serverga yuborish
-        fetch('http://localhost:3000/save-message', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ message: transcript })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Habar saqlandi:', data);
-        })
-        .catch((error) => {
-            console.error('Xatolik yuz berdi:', error);
-        });
-    };
-
-    recognition.onerror = (event) => {
-        result.textContent = "Xatolik yuz berdi: " + event.error
-    };
-
-    recognition.onend = () => {
-        result.textContent += " - Ovozli yozuv tugadi.";
-    };
-</script>
 
 
