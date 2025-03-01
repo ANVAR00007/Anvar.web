@@ -116,6 +116,13 @@
             <p>Sen mening hayotimdagi eng katta baxtsan!</p>
             <div class="z-animation scale">Z</div>
         </section>
+
+        <!-- Ovozli Habar Qo'shish -->
+        <section id="ovoza" class="mt-5">
+            <h2>Ovozli Habar Qoldirish</h2>
+            <button id="startButton" class="btn btn-danger">Ovozli Habarni Boshlash</button>
+            <p id="result">Ovozli habarni boshlash uchun tugmani bosing.</p>
+        </section>
     </div>
 
     <footer data-aos="fade-up">
@@ -142,75 +149,30 @@
                 AOS.refresh();
             }
         }
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ovozli Habar Qoldirish</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        #result {
-            margin-top: 20px;
-            font-size: 20px;
-            color: #555;
-        }
-        #startButton {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        #startButton:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
-    <h1>Ovozli Habar Qoldirish</h1>
-    <button id="startButton">Start</button>
-    <p id="result">Ovozli habarni boshlash uchun tugmani bosing.</p>
 
-    <script>
-        // Web Speech API-ni yaratish
+        // Web Speech API kodlari
         const startButton = document.getElementById('startButton');
         const result = document.getElementById('result');
 
-        // Web Speech API ning SpeechRecognition obyektini yaratish
         const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'uz-UZ';  // O'zbek tilini tanlash (yoki kerakli tilni o'zgartirishingiz mumkin)
-        recognition.continuous = false; // Faqat bir marta ovoz olish
-        recognition.interimResults = true; // Natijalarni darhol ko'rsatish
+        recognition.lang = 'uz-UZ';
+        recognition.continuous = false;
+        recognition.interimResults = true;
 
-        // Start tugmasiga bosilganda, ovozni tanib olishni boshlash
         startButton.addEventListener('click', () => {
             result.textContent = "Ovoz eshitilyapti...";
             recognition.start();
         });
 
-        // Natijalar olayotganda
         recognition.onresult = (event) => {
             const transcript = event.results[event.resultIndex][0].transcript;
             result.textContent = "Sizning habar: " + transcript;
         };
 
-        // Xatoliklar yuz berayotganda
         recognition.onerror = (event) => {
             result.textContent = "Xatolik yuz berdi: " + event.error;
         };
 
-        // Ovozli yozuv tugatilganda
         recognition.onend = () => {
             result.textContent += " - Ovozli yozuv tugadi.";
         };
