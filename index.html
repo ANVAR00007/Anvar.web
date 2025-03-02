@@ -146,49 +146,34 @@
             display: none;
         }
 
-        /* Chat qismi */
-        #chatBox {
-            position: fixed;
-            bottom: 0;
-            right: 10px;
-            width: 300px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            max-height: 400px;
+        /* Yozilgan so'zlar uchun */
+        #messagesContainer {
+            margin-top: 20px;
+            text-align: left;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            max-height: 300px;
             overflow-y: auto;
         }
 
-        #chatMessages {
-            flex-grow: 1;
-            margin-bottom: 10px;
-            overflow-y: scroll;
-        }
-
-        #chatInput {
+        .message {
+            background-color: #ffebee;
             padding: 10px;
-            font-size: 14px;
+            margin: 5px 0;
             border-radius: 5px;
-            border: 1px solid #ccc;
-            width: calc(100% - 80px);
+            border-left: 5px solid #d50000;
+            font-size: 16px;
         }
 
-        #sendMessage {
-            background-color: #00bcd4;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            margin-left: 10px;
-            cursor: pointer;
+        .message p {
+            margin: 0;
+            font-style: italic;
         }
 
-        #sendMessage:hover {
-            background-color: #0097a7;
+        /* Yozib qoldirish uchun joy */
+        #writeMessage {
+            display: none;
         }
     </style>
 </head>
@@ -230,20 +215,24 @@
                 <p>Sen mening hayotimdagi eng katta baxtsan!</p>
                 <div class="z-animation scale">Z</div>
             </section>
+
+            <!-- Yozish va o'qish joyi faqat parolni kiritganlardan keyin ko'rinadi -->
+            <div id="writeMessage">
+                <h3>Yozib qoldirish uchun joy</h3>
+                <textarea id="userMessage" rows="4" cols="50" placeholder="Yozib qoldiring..."></textarea>
+                <br>
+                <button onclick="saveMessage()">Yuborish</button>
+            </div>
+
+            <div id="messagesContainer">
+                <h4>Yozilgan So'zlar:</h4>
+                <!-- Yozilgan so'zlar shu yerga qo'shiladi -->
+            </div>
         </div>
 
         <footer data-aos="fade-up">
             © 2025 Sen – Yuragimda | Ishlab chiqildi: ANVARBEK
         </footer>
-    </div>
-
-    <!-- Chat qismi -->
-    <div id="chatBox">
-        <div id="chatMessages"></div>
-        <div>
-            <input type="text" id="chatInput" placeholder="Xabar yozing...">
-            <button id="sendMessage" onclick="sendMessage()">Yuborish</button>
-        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -257,6 +246,7 @@
             const errorElement = document.getElementById("error");
             const contentElement = document.getElementById("content");
             const passwordField = document.getElementById("password");
+            const writeMessageSection = document.getElementById("writeMessage");
 
             // Xatolikni tozalash
             errorElement.textContent = "";
@@ -267,6 +257,9 @@
                 document.getElementById("passwordForm").style.display = "none";
                 contentElement.style.display = "block";
                 document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
+                
+                // Yozish joyini ko'rsatish
+                writeMessageSection.style.display = "block";
             } else {
                 // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
                 passwordField.classList.add("error");
@@ -291,22 +284,17 @@
             }
         }
 
-        // Chat xabarlarini yuborish
-        function sendMessage() {
-            const messageInput = document.getElementById("chatInput");
-            const message = messageInput.value.trim();
+        // So'zlarni saqlash
+        function saveMessage() {
+            const message = document.getElementById("userMessage").value.trim();
             
             if (message) {
-                const chatMessages = document.getElementById("chatMessages");
+                const messagesContainer = document.getElementById("messagesContainer");
                 const newMessage = document.createElement("div");
-                newMessage.textContent = message;
-                chatMessages.appendChild(newMessage);
+                newMessage.classList.add("message");
+                newMessage.innerHTML = `<p>${message}</p>`;
+                messagesContainer.appendChild(newMessage);
 
                 // Inputni tozalash
-                messageInput.value = "";
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-        }
-    </script>
-</body>
-</html>
+               
+
