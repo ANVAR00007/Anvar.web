@@ -19,17 +19,6 @@
             position: relative;
         }
 
-        header {
-            background: linear-gradient(45deg, #d50000, #b71c1c);
-            color: white;
-            padding: 20px;
-            font-size: 36px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            font-weight: bold;
-            letter-spacing: 2px;
-            animation: bounce 1s infinite;
-        }
-
         /* Parolni kiritish formasi */
         #passwordForm {
             position: absolute;
@@ -42,8 +31,15 @@
             width: 80%;
             max-width: 400px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            display: block; /* Boshlang'ichda ko'rsatiladi */
         }
 
+        /* Asosiy kontent */
+        #content {
+            display: none; /* Boshlang'ichda ko'rsatilmaydi */
+        }
+
+        /* Xato xabari */
         .error {
             color: red;
             font-size: 18px;
@@ -92,11 +88,7 @@
             font-weight: bold;
         }
 
-        /* Asosiy kontent */
-        #content {
-            display: none;
-        }
-
+        /* Parolni kiritishdan oldingi dizayn */
         .greeting {
             font-size: 2.5rem;
             font-weight: bold;
@@ -120,16 +112,6 @@
         }
 
         /* Animatsiyalar */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes moveBackground {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
-        }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -137,6 +119,11 @@
             to {
                 opacity: 1;
             }
+        }
+
+        @keyframes moveBackground {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
         }
 
     </style>
@@ -155,8 +142,8 @@
         <p id="error" class="error"></p>
     </div>
 
+    <!-- Saytning asosiy kontenti -->
     <div id="content">
-        <!-- Saytning asosiy kontenti -->
         <header data-aos="fade-down">Kundalik.com</header>
         <nav class="d-flex justify-content-center py-3">
             <a href="#" onclick="showSection('asalim', 'bounce')" data-aos="zoom-in">Asalim</a>
@@ -232,3 +219,4 @@
     </script>
 </body>
 </html>
+
