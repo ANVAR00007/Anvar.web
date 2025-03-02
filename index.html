@@ -188,6 +188,57 @@
         </div>
 
         <footer data-aos="fade-up">
-            © 2025 Sen – Yuragimda 
+            © 2025 Sen – Yuragimda | Ishlab chiqildi: ANVARBEK
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+
+        const correctPassword = "zinnura"; // Parol
+
+        function checkPassword() {
+            const enteredPassword = document.getElementById("password").value;
+            const errorElement = document.getElementById("error");
+            const contentElement = document.getElementById("content");
+            const passwordField = document.getElementById("password");
+
+            // Xatolikni tozalash
+            errorElement.textContent = "";
+
+            // Parolni tekshirish
+            if (enteredPassword === correctPassword) {
+                // Parol to'g'ri bo'lsa, kontentni ko'rsatish
+                document.getElementById("passwordForm").style.display = "none";
+                contentElement.style.display = "block";
+                document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
+            } else {
+                // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
+                passwordField.classList.add("error");
+                errorElement.textContent = "Xato parol! Iltimos, qayta urinib ko'ring.";
+            }
+        }
+
+        function showSection(sectionId, animationClass) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            let section = document.getElementById(sectionId);
+            if (section) {
+                section.style.display = 'block';
+                section.setAttribute('data-aos', 'fade-up');
+                let zElement = section.querySelector('.z-animation');
+                if (zElement) {
+                    zElement.className = 'z-animation ' + animationClass;
+                }
+                AOS.refresh();
+            }
+        }
+    </script>
+</body>
+</html>
+
 
 
