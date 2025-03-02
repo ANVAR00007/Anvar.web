@@ -170,11 +170,6 @@
             margin: 0;
             font-style: italic;
         }
-
-        /* Yozib qoldirish uchun joy */
-        #writeMessage {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -216,8 +211,7 @@
                 <div class="z-animation scale">Z</div>
             </section>
 
-            <!-- Yozish va o'qish joyi faqat parolni kiritganlardan keyin ko'rinadi -->
-            <div id="writeMessage">
+            <div>
                 <h3>Yozib qoldirish uchun joy</h3>
                 <textarea id="userMessage" rows="4" cols="50" placeholder="Yozib qoldiring..."></textarea>
                 <br>
@@ -246,7 +240,6 @@
             const errorElement = document.getElementById("error");
             const contentElement = document.getElementById("content");
             const passwordField = document.getElementById("password");
-            const writeMessageSection = document.getElementById("writeMessage");
 
             // Xatolikni tozalash
             errorElement.textContent = "";
@@ -257,9 +250,6 @@
                 document.getElementById("passwordForm").style.display = "none";
                 contentElement.style.display = "block";
                 document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
-                
-                // Yozish joyini ko'rsatish
-                writeMessageSection.style.display = "block";
             } else {
                 // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
                 passwordField.classList.add("error");
@@ -296,5 +286,10 @@
                 messagesContainer.appendChild(newMessage);
 
                 // Inputni tozalash
-               
-
+                document.getElementById("userMessage").value = "";
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>
