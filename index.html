@@ -185,4 +185,74 @@
 
                 <div class="poem">
                     <p>Havo toza, tabiating go'zal,</p>
-                    <p>O'zbekistonim, s
+                    <p>O'zbekistonim, seni sevaman ko'plab!</p>
+                    <p>Bir butun xalqni birlashtirib,</p>
+                    <p>Kelajakni yuksaltirishda bir bo'lib harakat qilamiz!</p>
+                </div>
+
+                <div class="poem">
+                    <p>To'la xushyo'qlik, baxt va tinchlik,</p>
+                    <p>Yurtim O'zbekistonimda yashayman baxtli!</p>
+                    <p>Hamma o'z orzusiga erishsin,</p>
+                    <p>O'zbekistonim dunyo bo'ylab tanilsin.</p>
+                </div>
+
+            </section>
+        </div>
+
+        <footer data-aos="fade-up">
+            © 2025 Sen – Yuragimda | Ishlab chiqildi: ANVARBEK
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+
+        const correctPassword1 = "jinnivoyim"; // Birinchi parol
+        const correctPassword2 = "1444"; // Ikkinchi parol
+
+        function checkPassword() {
+            const enteredPassword = document.getElementById("password").value;
+            const errorElement = document.getElementById("error");
+            const contentElement = document.getElementById("content");
+            const passwordField = document.getElementById("password");
+
+            // Xatolikni tozalash
+            errorElement.textContent = "";
+
+            // Parolni tekshirish
+            if (enteredPassword === correctPassword1) {
+                // "Jinnivoyim" parol bo'lsa asosiy kontentni ko'rsatish
+                document.getElementById("passwordForm").style.display = "none";
+                contentElement.style.display = "block";
+                document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
+            } else if (enteredPassword === correctPassword2) {
+                // "1444" parol bo'lsa O'zbekiston sahifasini ko'rsatish
+                document.getElementById("passwordForm").style.display = "none";
+                contentElement.style.display = "block";
+                showSection("ozbekiston");
+                document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
+            } else {
+                // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
+                passwordField.classList.add("error");
+                errorElement.textContent = "Xato parol! Iltimos, qayta urinib ko'ring.";
+            }
+        }
+
+        function showSection(sectionId, animationClass) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            let section = document.getElementById(sectionId);
+            if (section) {
+                section.style.display = 'block';
+                section.setAttribute('data-aos', 'fade-up');
+                AOS.refresh();
+            }
+        }
+    </script>
+</body>
+</html>
+
