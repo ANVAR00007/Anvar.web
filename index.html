@@ -3,47 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kundalik.com</title>
+    <title>Sen Meni Yuragimda</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #f8bbd0, #f48fb1);
+            background: linear-gradient(to right, #ffebee, #ff8a80);
             text-align: center;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+        }
+        header {
+            background: linear-gradient(45deg, #d50000, #b71c1c);
+            color: white;
+            padding: 20px;
+            font-size: 36px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        nav a {
+            margin: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background: #c62828;
+            transition: all 0.3s;
+        }
+        nav a:hover {
+            background: #ff5252;
+            color: white;
+        }
+        .container {
+            padding: 40px 20px;
+        }
+        h2 {
+            color: #d50000;
+            font-weight: bold;
+        }
+        p, .poem {
+            font-size: 20px;
+            margin: 20px 0;
+            line-height: 1.8;
+            font-style: italic;
+            color: #b71c1c;
+        }
+        .z-animation {
+            font-size: 120px;
+            font-weight: bold;
+            color: #d50000;
+            text-shadow: 0 0 10px #ff1744, 0 0 20px #ff5252, 0 0 30px #d50000;
+        }
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .rotate {
+            animation: rotate 3s infinite linear;
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .scale {
+            animation: scale 2s infinite alternate;
+        }
+        @keyframes scale {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.5); }
+        }
+        footer {
+            background: linear-gradient(45deg, #d50000, #b71c1c);
+            color: white;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-weight: bold;
         }
 
-        /* Parolni kiritish formasi */
-        #passwordForm {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            width: 80%;
-            max-width: 400px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            display: block; /* Boshlang'ichda ko'rsatiladi */
+        /* Parolni kiritish formasi uchun */
+        .hidden {
+            display: none;
+        }
+        .content {
+            display: none;
         }
 
-        /* Asosiy kontent */
-        #content {
-            display: none; /* Boshlang'ichda ko'rsatilmaydi */
-        }
-
-        /* Xato xabari */
         .error {
             color: red;
             font-size: 18px;
-            margin-top: 10px;
         }
 
         #password {
@@ -51,7 +104,7 @@
             font-size: 20px;
             border: 2px solid #ddd;
             border-radius: 5px;
-            width: 100%;
+            width: 300px;
             margin-top: 20px;
             outline: none;
             transition: all 0.3s ease;
@@ -62,6 +115,17 @@
             transform: scale(1.05);
         }
 
+        /* Parol kiritish joyi uchun animatsiya */
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        #password.error {
+            animation: bounce 0.5s ease;
+        }
+
+        /* Tugma dizayni */
         button {
             padding: 10px 20px;
             background-color: #00bcd4;
@@ -78,73 +142,25 @@
             background-color: #0097a7;
         }
 
-        footer {
-            background: linear-gradient(45deg, #d50000, #b71c1c);
-            color: white;
-            padding: 15px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            font-weight: bold;
+        #content {
+            display: none;
         }
-
-        /* Parolni kiritishdan oldingi dizayn */
-        .greeting {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #b71c1c;
-            animation: fadeIn 2s ease-in;
-            margin-top: 50px;
-        }
-
-        .background-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://www.w3schools.com/w3images/fjords.jpg');
-            background-size: cover;
-            background-position: center;
-            filter: blur(5px);
-            z-index: -1;
-            animation: moveBackground 30s linear infinite;
-        }
-
-        /* Animatsiyalar */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes moveBackground {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
-        }
-
     </style>
 </head>
 <body>
 
-    <!-- Fon animatsiyasi -->
-    <div class="background-animation"></div>
-
     <!-- Parolni kiritish formasi -->
     <div id="passwordForm">
-        <h2 class="greeting">Kundalik.com'ga Xush Kelibsiz!</h2>
-        <p>Saytingizga kirish uchun parolni kiriting:</p>
+        <h2>Saytga Kirish</h2>
+        <p>Parolni kiriting:</p>
         <input type="password" id="password" placeholder="Parolni kiriting">
         <button onclick="checkPassword()">Kirish</button>
         <p id="error" class="error"></p>
     </div>
 
-    <!-- Saytning asosiy kontenti -->
-    <div id="content">
-        <header data-aos="fade-down">Kundalik.com</header>
+    <div id="content" class="content">
+        <!-- Saytning asosiy kontenti -->
+        <header data-aos="fade-down">Sen Meni Yuragimda</header>
         <nav class="d-flex justify-content-center py-3">
             <a href="#" onclick="showSection('asalim', 'bounce')" data-aos="zoom-in">Asalim</a>
             <a href="#" onclick="showSection('yuragimni-egasi', 'rotate')" data-aos="zoom-in">Yuragimni Egasi</a>
@@ -155,68 +171,23 @@
             <section id="asalim" class="hidden" data-aos="fade-up">
                 <h2>Asalim</h2>
                 <p>Sen mening qalbimning eng yorqin yulduzisan.</p>
+                <div class="z-animation bounce">Z</div>
             </section>
             
             <section id="yuragimni-egasi" class="hidden" data-aos="fade-up">
                 <h2>Yuragimni Egasi</h2>
                 <p>Sen men uchun bebaho xazinasan.</p>
+                <div class="z-animation rotate">Z</div>
             </section>
             
             <section id="hayotim" class="hidden" data-aos="fade-up">
                 <h2>Hayotim</h2>
                 <p>Sen mening hayotimdagi eng katta baxtsan!</p>
+                <div class="z-animation scale">Z</div>
             </section>
         </div>
 
         <footer data-aos="fade-up">
-            © 2025 Kundalik.com | Ishlab chiqildi: ANVARBEK
-        </footer>
-    </div>
+            © 2025 Sen – Yuragimda 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init();
-
-        const correctPassword = "zinnura"; // Parol
-
-        function checkPassword() {
-            const enteredPassword = document.getElementById("password").value;
-            const errorElement = document.getElementById("error");
-            const contentElement = document.getElementById("content");
-            const passwordField = document.getElementById("password");
-
-            // Xatolikni tozalash
-            errorElement.textContent = "";
-
-            // Parolni tekshirish
-            if (enteredPassword === correctPassword) {
-                // Parol to'g'ri bo'lsa, kontentni ko'rsatish
-                document.getElementById("passwordForm").style.display = "none";
-                contentElement.style.display = "block";
-                document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
-            } else {
-                // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
-                passwordField.classList.add("error");
-                errorElement.textContent = "Xato parol! Iltimos, qayta urinib ko'ring.";
-            }
-        }
-
-        function showSection(sectionId, animationClass) {
-            document.querySelectorAll('section').forEach(section => {
-                section.style.display = 'none';
-            });
-
-            let section = document.getElementById(sectionId);
-            if (section) {
-                section.style.display = 'block';
-                let zElement = section.querySelector('.z-animation');
-                if (zElement) {
-                    zElement.className = 'z-animation ' + animationClass;
-                }
-                AOS.refresh();
-            }
-        }
-    </script>
-</body>
-</html>
 
