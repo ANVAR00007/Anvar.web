@@ -161,22 +161,4 @@
 
         // Maxfiy sahifa uchun parolni tekshirish
         document.getElementById('passwordForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const password = document.getElementById('password').value;
-
-            if (password === 'jinnivoyim') {
-                document.getElementById('surveySection').style.display = 'block';  // So'rovnoma ko'rsatilsin
-                document.getElementById('secretContent').style.display = 'block';  // Maxfiy sahifa ko'rsatiladi
-                document.getElementById('errorMessage').style.display = 'none';  // Xato xabarini yashirish
-            } else if (password === '1444') {
-                document.getElementById('surveySection').style.display = 'none';  // So'rovnoma yashirin
-                document.getElementById('secretContent').style.display = 'none';  // Maxfiy sahifa yashirin
-                document.getElementById('errorMessage').style.display = 'none';  // Xato xabarini yashirish
-            } else {
-                document.getElementById('errorMessage').style.display = 'block';  // Xato parolni ko'rsatish
-            }
-        });
-    </script>
-
-</body>
-</html>
+            e.preven
