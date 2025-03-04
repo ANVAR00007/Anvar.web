@@ -81,7 +81,6 @@
             animation: fadeIn 1.5s ease-in-out;
         }
 
-        /* Animatsiyalar */
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
@@ -123,18 +122,31 @@
             display: none;
         }
 
-        .joke {
-            font-size: 24px;
-            font-weight: bold;
+        /* Animatsiyalar */
+        .section h2 {
+            font-size: 2.5em;
             color: #d50000;
-            margin-top: 30px;
-            animation: jokeAnimation 2s ease-in-out infinite;
+            margin-bottom: 20px;
+            animation: textAnimation 1.5s ease-in-out;
         }
 
-        @keyframes jokeAnimation {
-            0%, 100% { transform: scale(1); color: #d50000; }
-            50% { transform: scale(1.2); color: #ff5252; }
+        .section p {
+            font-size: 1.5em;
+            color: #555;
+            margin-bottom: 30px;
+            animation: textFadeIn 2s ease-in-out;
         }
+
+        @keyframes textAnimation {
+            0% { transform: translateY(-20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes textFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
     </style>
 </head>
 <body>
@@ -176,10 +188,6 @@
                 <h2>Hayotim</h2>
                 <p>Sen mening hayotimdagi eng katta baxtsan!</p>
             </section>
-        </div>
-
-        <div class="joke">
-            Zinnura uchun: "Sen men uchun nafaqat sevgi, balki butun dunyomning eng yaxshi hazilchisisan!"
         </div>
 
         <footer>
@@ -227,8 +235,5 @@
 
 </body>
 </html>
-
-
-
 
 
