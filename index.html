@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sayt So'rovnomasi va Maxfiy Sahifa</title>
+    <title>Saytga Kirish va So'rovnoma</title>
     <style>
-        /* Umumiy dizayn */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
-            transition: background-color 0.3s ease;
         }
         header {
             background-color: #333;
@@ -19,44 +17,22 @@
             text-align: center;
             padding: 20px;
         }
-
         button {
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #00bcd4;
             color: white;
             border: none;
+            font-size: 18px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
         }
-
         button:hover {
-            background-color: #45a049;
+            background-color: #0097a7;
         }
-
-        /* So'rovnoma dizayni */
-        .survey-section {
+        .section {
             margin: 30px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            width: 80%;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .survey-section h2 {
-            text-align: center;
-            font-size: 24px;
-            color: #333;
-        }
-
-        .survey-section label {
-            margin-right: 20px;
-            font-size: 16px;
-        }
-
-        /* Maxfiy sahifa */
-        .secret-section {
-            margin-top: 30px;
             padding: 20px;
             background-color: #ffffff;
             width: 80%;
@@ -65,100 +41,176 @@
             display: none;
         }
 
-        /* Animatsiya qo'shish */
-        .anim {
-            animation: slideInZ 1s ease-in-out forwards;
-        }
-
-        @keyframes slideInZ {
-            0% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
         .error {
             color: red;
-            font-weight: bold;
-            text-align: center;
+            font-size: 18px;
         }
+
+        #password {
+            padding: 15px;
+            font-size: 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+            margin-top: 20px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #password:focus {
+            border-color: #00bcd4;
+            transform: scale(1.05);
+        }
+
+        .z-animation {
+            font-size: 120px;
+            font-weight: bold;
+            color: #d50000;
+            text-shadow: 0 0 10px #ff1744, 0 0 20px #ff5252, 0 0 30px #d50000;
+        }
+        
+        /* Animatsiya qo'shish */
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .rotate {
+            animation: rotate 3s infinite linear;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .scale {
+            animation: scale 2s infinite alternate;
+        }
+
+        @keyframes scale {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.5); }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(45deg, #d50000, #b71c1c);
+            color: white;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Saytga Xush Kelibsiz!</h1>
-        <p>Parolni kiriting va maxfiy bo'limlarga kirishga harakat qiling.</p>
+        <h1>Saytga Kirish</h1>
+        <p>Parolni kiriting va kontentga kirish imkoniyatiga ega bo'ling.</p>
     </header>
 
-    <!-- Parolni tekshirish -->
-    <div id="passwordFormContainer" class="survey-section">
-        <h2>Maxfiy Sahifaga Kirish</h2>
-        <form id="passwordForm">
-            <input type="password" id="password" placeholder="Parolni kiriting" required>
-            <button type="submit">Kirish</button>
-        </form>
-        <p id="errorMessage" class="error" style="display: none;">Noto'g'ri parol, iltimos qayta urinib ko'ring.</p>
+    <!-- Parolni kiritish formasi -->
+    <div id="passwordForm">
+        <input type="password" id="password" placeholder="Parolni kiriting">
+        <button onclick="checkPassword()">Kirish</button>
+        <p id="error" class="error"></p>
     </div>
 
-    <!-- So'rovnoma va Sevgi Haqidagi Bo'limlar -->
-    <div id="surveySection" class="survey-section anim" style="display: none;">
-        <h2>Sevgi Haqida So'rovnoma</h2>
-        <p>Quyidagi variantlardan birini tanlang:</p>
-        <form id="surveyForm">
-            <input type="radio" id="unchamas" name="love" value="Unchamas">
-            <label for="unchamas">a) Unchamas</label><br>
+    <!-- Asosiy Kontent -->
+    <div id="content" class="section">
+        <header data-aos="fade-down">Sevgi Haqida</header>
+        <nav class="d-flex justify-content-center py-3">
+            <a href="#" onclick="showSection('asalim', 'bounce')">Asalim</a>
+            <a href="#" onclick="showSection('yuragimni-egasi', 'rotate')">Yuragimni Egasi</a>
+            <a href="#" onclick="showSection('hayotim', 'scale')">Hayotim</a>
+        </nav>
 
-            <input type="radio" id="normal" name="love" value="Normal">
-            <label for="normal">b) Normal</label><br>
+        <div class="container">
+            <section id="asalim" class="hidden" data-aos="fade-up">
+                <h2>Asalim</h2>
+                <p>Sen mening qalbimning eng yorqin yulduzisan.</p>
+                <div class="z-animation bounce">Z</div>
+            </section>
 
-            <input type="radio" id="juda" name="love" value="Juda">
-            <label for="juda">c) Juda</label><br>
+            <section id="yuragimni-egasi" class="hidden" data-aos="fade-up">
+                <h2>Yuragimni Egasi</h2>
+                <p>Sen men uchun bebaho xazinasan.</p>
+                <div class="z-animation rotate">Z</div>
+            </section>
 
-            <input type="radio" id="yasholmayman" name="love" value="Sizsiz yasholmayman">
-            <label for="yasholmayman">d) Sizsiz yasholmayman</label><br>
-
-            <input type="radio" id="jonimdanOrtiq" name="love" value="Sizni jonimdan ortiq ko'raman">
-            <label for="jonimdanOrtiq">e) Sizni jonimdan ortiq ko'raman</label><br>
-
-            <input type="radio" id="hammasidan" name="love" value="Hammasidan ham yuqori">
-            <label for="hammasidan">f) Hammasidan ham yuqori</label><br><br>
-
-            <button type="submit">Javobni yuborish</button>
-        </form>
-
-        <div class="result" id="result" style="display: none;">
-            <h3>Natija:</h3>
-            <p id="resultText"></p>
+            <section id="hayotim" class="hidden" data-aos="fade-up">
+                <h2>Hayotim</h2>
+                <p>Sen mening hayotimdagi eng katta baxtsan!</p>
+                <div class="z-animation scale">Z</div>
+            </section>
         </div>
+
+        <footer>
+            © 2025 Sayt – Yuragimda | Ishlab chiqildi: ANVARBEK
+        </footer>
     </div>
 
-    <!-- Maxfiy bo'lim (O'zbekiston haqidagi she'r faqat jinnivoyim parolida) -->
-    <div id="secretContent" class="secret-section anim">
-        <h2>Maxfiy Sahifa</h2>
-        <p>Sevgi haqidagi she'r va hayotimni anglash:</p>
-        <p>Bu bo'lim faqat "jinnivoyim" parolida ko'rsatiladi!</p>
-    </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        // So'rovnoma yuborilganda natijani ko'rsatish
-        document.getElementById('surveyForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const loveAnswer = document.querySelector('input[name="love"]:checked');
+        // Animatsiya kutubxonasini ishga tushirish
+        AOS.init();
 
-            if (loveAnswer) {
-                const resultText = "Sizning javobingiz: " + loveAnswer.value;
-                document.getElementById('resultText').textContent = resultText;
-                document.getElementById('result').style.display = 'block';
+        const correctPassword1 = "jinnivoyim"; // Birinchi parol
+        const correctPassword2 = "1444"; // Ikkinchi parol
+
+        function checkPassword() {
+            const enteredPassword = document.getElementById("password").value;
+            const errorElement = document.getElementById("error");
+            const contentElement = document.getElementById("content");
+            const passwordField = document.getElementById("password");
+
+            // Xatolikni tozalash
+            errorElement.textContent = "";
+
+            // Parolni tekshirish
+            if (enteredPassword === correctPassword1) {
+                // Birinchi parol to'g'ri bo'lsa, asosiy kontentni ko'rsatish
+                document.getElementById("passwordForm").style.display = "none";
+                contentElement.style.display = "block";
+                document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
+            } else if (enteredPassword === correctPassword2) {
+                // Ikkinchi parol to'g'ri bo'lsa, asosiy kontentni ko'rsatish
+                document.getElementById("passwordForm").style.display = "none";
+                contentElement.style.display = "block";
+                document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
             } else {
-                alert("Iltimos, biror variantni tanlang.");
+                // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
+                passwordField.classList.add("error");
+                errorElement.textContent = "Xato parol! Iltimos, qayta urinib ko'ring.";
             }
-        });
+        }
 
-        // Maxfiy sahifa uchun parolni tekshirish
-        document.getElementById('passwordForm').addEventListener('submit', function(e) {
-            e.preven
+        // Bo'limlarni ko'rsatish
+        function showSection(sectionId, animationClass) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            let section = document.getElementById(sectionId);
+            if (section) {
+                section.style.display = 'block';
+                let zElement = section.querySelector('.z-animation');
+                if (zElement) {
+                    zElement.className = 'z-animation ' + animationClass;
+                }
+                AOS.refresh();
+            }
+        }
+    </script>
+
+</body>
+</html>
+
