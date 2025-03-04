@@ -10,17 +10,22 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+            background: linear-gradient(45deg, #d50000, #b71c1c);
+            color: white;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
         }
+
         header {
-            background-color: #b71c1c;
+            background-color: rgba(183, 28, 28, 0.8);
             color: white;
             text-align: center;
             padding: 50px 20px;
             border-bottom: 5px solid #d50000;
             font-family: 'Great Vibes', cursive;
         }
+
         header h1 {
             font-size: 3.5em;
             margin: 0;
@@ -47,6 +52,84 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
+        .section {
+            margin: 30px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: none;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mushukchaning animatsiyasi */
+        .zinnura {
+            font-size: 50px;
+            font-weight: bold;
+            color: #ff1744;
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            animation: zinnuraPlay 3s infinite;
+            z-index: 9999;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .zinnura::after {
+            content: "Zinnura";
+            font-size: 1.5em;
+            font-family: 'Great Vibes', cursive;
+            color: #ffeb3b;
+            margin-left: 15px;
+        }
+
+        @keyframes zinnuraPlay {
+            0% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(20vw, 10vh) rotate(15deg);
+            }
+            50% {
+                transform: translate(40vw, 20vh) rotate(30deg);
+            }
+            75% {
+                transform: translate(60vw, 10vh) rotate(45deg);
+            }
+            100% {
+                transform: translate(80vw, 0) rotate(60deg);
+            }
+        }
+
+        footer {
+            background: linear-gradient(45deg, #d50000, #b71c1c);
+            color: white;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Animatsiyalar */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .error {
+            color: red;
+            font-size: 18px;
+        }
+
+        /* Parolni kiritish */
         #password {
             padding: 15px;
             font-size: 20px;
@@ -63,77 +146,9 @@
             transform: scale(1.05);
         }
 
-        .error {
-            color: red;
-            font-size: 18px;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .section {
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #fff;
-            width: 80%;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        /* Asosiy Kontent */
+        .content {
             display: none;
-            text-align: center;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* Animatsiyalar */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .z-animation {
-            font-size: 120px;
-            font-weight: bold;
-            color: #d50000;
-            text-shadow: 0 0 15px #ff1744, 0 0 30px #ff5252, 0 0 45px #d50000;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        footer {
-            background: linear-gradient(45deg, #d50000, #b71c1c);
-            color: white;
-            padding: 15px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .nav-links {
-            margin-top: 20px;
-        }
-
-        .nav-links a {
-            margin: 0 20px;
-            padding: 10px 20px;
-            background-color: #d50000;
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 50px;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .nav-links a:hover {
-            background-color: #b71c1c;
-            transform: translateY(-5px);
         }
 
     </style>
@@ -154,31 +169,20 @@
     </div>
 
     <!-- Asosiy Kontent -->
-    <div id="content" class="section">
+    <div id="content" class="content">
         <header>Sevgi Haqida</header>
-        <div class="nav-links">
-            <a href="#" onclick="showSection('asalim', 'bounce')">Asalim</a>
-            <a href="#" onclick="showSection('yuragimni-egasi', 'rotate')">Yuragimni Egasi</a>
-            <a href="#" onclick="showSection('hayotim', 'scale')">Hayotim</a>
-        </div>
-
         <div class="container">
-            <section id="asalim" class="hidden">
+            <section id="asalim">
                 <h2>Asalim</h2>
                 <p>Sen mening qalbimning eng yorqin yulduzisan.</p>
-                <div class="z-animation">Z</div>
             </section>
-
-            <section id="yuragimni-egasi" class="hidden">
+            <section id="yuragimni-egasi">
                 <h2>Yuragimni Egasi</h2>
                 <p>Sen men uchun bebaho xazinasan.</p>
-                <div class="z-animation rotate">Z</div>
             </section>
-
-            <section id="hayotim" class="hidden">
+            <section id="hayotim">
                 <h2>Hayotim</h2>
                 <p>Sen mening hayotimdagi eng katta baxtsan!</p>
-                <div class="z-animation scale">Z</div>
             </section>
         </div>
 
@@ -187,10 +191,10 @@
         </footer>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init();
+    <!-- Zinnura Mushukcha Animatsiyasi -->
+    <div class="zinnura"></div>
 
+    <script>
         const correctPassword1 = "jinnivoyim"; // Birinchi parol
         const correctPassword2 = "1444"; // Ikkinchi parol
 
@@ -220,24 +224,8 @@
                 errorElement.textContent = "Xato parol! Iltimos, qayta urinib ko'ring.";
             }
         }
-
-        // Bo'limlarni ko'rsatish
-        function showSection(sectionId, animationClass) {
-            document.querySelectorAll('section').forEach(section => {
-                section.style.display = 'none';
-            });
-
-            let section = document.getElementById(sectionId);
-            if (section) {
-                section.style.display = 'block';
-                let zElement = section.querySelector('.z-animation');
-                if (zElement) {
-                    zElement.className = 'z-animation ' + animationClass;
-                }
-                AOS.refresh();
-            }
-        }
     </script>
 
 </body>
 </html>
+
