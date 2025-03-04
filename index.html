@@ -10,22 +10,17 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(45deg, #d50000, #b71c1c);
-            color: white;
-            background-size: cover;
-            background-attachment: fixed;
-            position: relative;
+            background-color: #f5f5f5;
+            color: #333;
         }
-
         header {
-            background-color: rgba(183, 28, 28, 0.8);
+            background-color: #b71c1c;
             color: white;
             text-align: center;
             padding: 50px 20px;
             border-bottom: 5px solid #d50000;
             font-family: 'Great Vibes', cursive;
         }
-
         header h1 {
             font-size: 3.5em;
             margin: 0;
@@ -33,7 +28,7 @@
         }
 
         button {
-            padding: 15px 30px;
+            padding: 14px 30px;
             background-color: #d50000;
             color: white;
             border: 2px solid #b71c1c;
@@ -68,6 +63,30 @@
             transform: scale(1.05);
         }
 
+        .error {
+            color: red;
+            font-size: 18px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .section {
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: none;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Animatsiyalar */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
         footer {
             background: linear-gradient(45deg, #d50000, #b71c1c);
             color: white;
@@ -79,84 +98,43 @@
             text-align: center;
         }
 
-        /* Animatsiyalar */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        .nav-links {
+            margin-top: 20px;
         }
 
-        @keyframes catMove {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(25vw, 10vh) rotate(10deg); }
-            50% { transform: translate(50vw, 20vh) rotate(20deg); }
-            75% { transform: translate(75vw, 10vh) rotate(30deg); }
-            100% { transform: translate(100vw, 0) rotate(40deg); }
-        }
-
-        /* Mushukchani hayotiy animatsiyasi */
-        .cat {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 80px;
-            background-color: #000000; /* Mushuk rangi qora */
-            border-radius: 50%;
-            animation: catMove 5s ease-in-out infinite;
-            z-index: 9999;
-        }
-
-        .cat::before {
-            content: "";
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            width: 50px;
-            height: 50px;
-            background-color: #ff7043;
-            border-radius: 50%;
-            transform: translateX(-50%);
-        }
-
-        .cat .name-tag {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Great Vibes', cursive;
-            font-size: 18px;
-            color: #2196F3; /* Ism yozuvi uchun ko'k rang */
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .content {
-            display: none;
-        }
-
-        /* Tugmalarni animatsiyasi */
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .nav-buttons a {
-            padding: 15px 40px;
+        .nav-links a {
+            margin: 0 20px;
+            padding: 12px 25px;
             background-color: #d50000;
             color: white;
             text-decoration: none;
             font-size: 18px;
             border-radius: 50px;
-            transition: all 0.3s ease-in-out;
+            transition: all 0.3s;
+            display: inline-block;
         }
 
-        .nav-buttons a:hover {
+        .nav-links a:hover {
             background-color: #b71c1c;
             transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
+        .hidden {
+            display: none;
+        }
+
+        .joke {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d50000;
+            margin-top: 30px;
+            animation: jokeAnimation 2s ease-in-out infinite;
+        }
+
+        @keyframes jokeAnimation {
+            0%, 100% { transform: scale(1); color: #d50000; }
+            50% { transform: scale(1.2); color: #ff5252; }
+        }
     </style>
 </head>
 <body>
@@ -175,29 +153,33 @@
     </div>
 
     <!-- Asosiy Kontent -->
-    <div id="content" class="content">
+    <div id="content" class="section">
         <header>Sevgi Haqida</header>
-        <div class="nav-buttons">
+        <div class="nav-links">
             <a href="#" onclick="showSection('asalim')">Asalim</a>
             <a href="#" onclick="showSection('yuragimni-egasi')">Yuragimni Egasi</a>
             <a href="#" onclick="showSection('hayotim')">Hayotim</a>
         </div>
 
         <div class="container">
-            <section id="asalim" class="section">
+            <section id="asalim" class="hidden">
                 <h2>Asalim</h2>
                 <p>Sen mening qalbimning eng yorqin yulduzisan.</p>
             </section>
 
-            <section id="yuragimni-egasi" class="section">
+            <section id="yuragimni-egasi" class="hidden">
                 <h2>Yuragimni Egasi</h2>
                 <p>Sen men uchun bebaho xazinasan.</p>
             </section>
 
-            <section id="hayotim" class="section">
+            <section id="hayotim" class="hidden">
                 <h2>Hayotim</h2>
                 <p>Sen mening hayotimdagi eng katta baxtsan!</p>
             </section>
+        </div>
+
+        <div class="joke">
+            Zinnura uchun: "Sen men uchun nafaqat sevgi, balki butun dunyomning eng yaxshi hazilchisisan!"
         </div>
 
         <footer>
@@ -205,14 +187,8 @@
         </footer>
     </div>
 
-    <!-- Mushukcha Animatsiyasi -->
-    <div class="cat">
-        <div class="name-tag">Zinnura</div>
-    </div>
-
     <script>
         const correctPassword1 = "jinnivoyim"; // Birinchi parol
-        const correctPassword2 = "1444"; // Ikkinchi parol
 
         function checkPassword() {
             const enteredPassword = document.getElementById("password").value;
@@ -229,11 +205,6 @@
                 document.getElementById("passwordForm").style.display = "none";
                 contentElement.style.display = "block";
                 document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
-            } else if (enteredPassword === correctPassword2) {
-                // Ikkinchi parol to'g'ri bo'lsa, saytdagi barcha kontentni yashirish
-                document.getElementById("passwordForm").style.display = "none";
-                contentElement.style.display = "none"; // Kontentni yashirish
-                document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
             } else {
                 // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
                 passwordField.classList.add("error");
@@ -243,19 +214,21 @@
 
         // Bo'limlarni ko'rsatish
         function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                if (section.id === sectionId) {
-                    section.style.display = "block";
-                } else {
-                    section.style.display = "none";
-                }
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
             });
+
+            let section = document.getElementById(sectionId);
+            if (section) {
+                section.style.display = 'block';
+            }
         }
     </script>
 
 </body>
 </html>
+
+
 
 
 
