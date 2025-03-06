@@ -190,6 +190,12 @@
             </section>
         </div>
 
+        <!-- Tugma va qo'shiq -->
+        <div id="songButton" class="hidden" style="text-align: center; margin-top: 30px;">
+            <button onclick="playSong()">O'zimni Sevglimni Tinglash</button>
+            <audio id="song" src="vohidjon-isoqov-ozimni-sevglim.mp3" preload="auto"></audio>
+        </div>
+
         <footer>
             © 2025 Sayt – Yuragimda | Ishlab chiqildi: ANVARBEK
         </footer>
@@ -203,6 +209,7 @@
             const errorElement = document.getElementById("error");
             const contentElement = document.getElementById("content");
             const passwordField = document.getElementById("password");
+            const songButton = document.getElementById("songButton");
 
             // Xatolikni tozalash
             errorElement.textContent = "";
@@ -213,6 +220,7 @@
                 document.getElementById("passwordForm").style.display = "none";
                 contentElement.style.display = "block";
                 document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
+                songButton.style.display = "block"; // Tugmani ko'rsatish
             } else {
                 // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
                 passwordField.classList.add("error");
@@ -231,9 +239,16 @@
                 section.style.display = 'block';
             }
         }
+
+        // Qo'shiqni ijro etish
+        function playSong() {
+            const song = document.getElementById("song");
+            song.play();
+        }
     </script>
 
 </body>
 </html>
+
 
 
