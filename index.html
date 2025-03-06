@@ -12,6 +12,7 @@
             padding: 0;
             background-color: #f5f5f5;
             color: #333;
+            transition: all 0.5s ease;
         }
         header {
             background-color: #b71c1c;
@@ -122,6 +123,21 @@
             display: none;
         }
 
+        .ramazon {
+            background: url('https://example.com/ramazon-moon-image.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            font-size: 2em;
+            text-align: center;
+            padding: 50px 20px;
+            opacity: 0.7;
+            transition: all 1s ease;
+        }
+
+        .ramazon h2 {
+            margin: 0;
+        }
+
         /* Animatsiyalar */
         .section h2 {
             font-size: 2.5em;
@@ -190,10 +206,16 @@
             </section>
         </div>
 
+        <!-- Ramazon oyi uchun effekt -->
+        <div id="ramazon" class="ramazon hidden">
+            <h2>Ramazon Oyi Muborak!</h2>
+            <p>Yaxshi niyat va saodat bilan</p>
+        </div>
+
         <!-- Tugma va qo'shiq -->
         <div id="songButton" class="hidden" style="text-align: center; margin-top: 30px;">
             <button onclick="playSong()">O'zimni Sevglimni Tinglash</button>
-            <audio id="song" src="vohidjon-isoqov-ozimni-sevglim.mp3" preload="auto"></audio>
+            <audio id="song" src="https://example.com/vohidjon-isoqov-ozimni-sevglim.mp3" preload="auto"></audio>
         </div>
 
         <footer>
@@ -210,6 +232,7 @@
             const contentElement = document.getElementById("content");
             const passwordField = document.getElementById("password");
             const songButton = document.getElementById("songButton");
+            const ramazon = document.getElementById("ramazon");
 
             // Xatolikni tozalash
             errorElement.textContent = "";
@@ -221,6 +244,7 @@
                 contentElement.style.display = "block";
                 document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
                 songButton.style.display = "block"; // Tugmani ko'rsatish
+                ramazon.style.display = "block"; // Ramazon effektini ko'rsatish
             } else {
                 // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
                 passwordField.classList.add("error");
