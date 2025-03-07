@@ -162,117 +162,118 @@
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
-
     </style>
 </head>
 <body>
 
-    <!-- Parolni kiritish formasi -->
-    <div id="passwordForm">
-        <header>
-            <h1>Saytga Kirish</h1>
-            <p>Parolni kiriting:</p>
-        </header>
-        <div style="text-align: center;">
-            <input type="password" id="password" placeholder="Parolni kiriting">
-            <button onclick="checkPassword()">Kirish</button>
-            <p id="error" class="error"></p>
+<!-- Parolni kiritish formasi -->
+<div id="passwordForm">
+    <header>
+        <h1>Saytga Kirish</h1>
+        <p>Parolni kiriting:</p>
+    </header>
+    <div style="text-align: center;">
+        <input type="password" id="password" placeholder="Parolni kiriting">
+        <button onclick="checkPassword()">Kirish</button>
+        <p id="error" class="error"></p>
+    </div>
+</div>
+
+<!-- Asosiy Kontent -->
+<div id="content" class="section">
+    <header>Sevgi Haqida</header>
+    <div class="nav-links">
+        <a href="#" onclick="showSection('asalim')">Asalim</a>
+        <a href="#" onclick="showSection('yuragimni-egasi')">Yuragimni Egasi</a>
+        <a href="#" onclick="showSection('hayotim')">Hayotim</a>
+    </div>
+
+    <div class="container">
+        <section id="asalim" class="hidden">
+            <h2>Asalim</h2>
+            <p>Sen mening qalbimning eng yorqin yulduzisan.</p>
+        </section>
+
+        <section id="yuragimni-egasi" class="hidden">
+            <h2>Yuragimni Egasi</h2>
+            <p>Sen men uchun bebaho xazinasan.</p>
+        </section>
+
+        <section id="hayotim" class="hidden">
+            <h2>Hayotim</h2>
+            <p>Sen mening hayotimdagi eng katta baxtsan!</p>
+        </section>
+    </div>
+
+    <!-- Ramazon oyi uchun effekt -->
+    <div id="ramazon" class="ramazon hidden">
+        <h2>Ramazon Oyi Muborak!</h2>
+        <p>Yaxshi niyat va saodat bilan</p>
+    </div>
+
+    <!-- Tugma va qo'shiq -->
+    <div id="songButton" class="hidden" style="text-align: center; margin-top: 30px;">
+        <button onclick="playSong()">O'zimni Sevglimni Tinglash</button>
+        <div id="songPlayer" class="hidden" style="margin-top: 30px;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/TQjbLOhmlMY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- Asosiy Kontent -->
-    <div id="content" class="section">
-        <header>Sevgi Haqida</header>
-        <div class="nav-links">
-            <a href="#" onclick="showSection('asalim')">Asalim</a>
-            <a href="#" onclick="showSection('yuragimni-egasi')">Yuragimni Egasi</a>
-            <a href="#" onclick="showSection('hayotim')">Hayotim</a>
-        </div>
+    <footer>
+        © 2025 Sayt – Yuragimda | Ishlab chiqildi: ANVARBEK
+    </footer>
+</div>
 
-        <div class="container">
-            <section id="asalim" class="hidden">
-                <h2>Asalim</h2>
-                <p>Sen mening qalbimning eng yorqin yulduzisan.</p>
-            </section>
+<script>
+    const correctPassword1 = "jinnivoyim"; // Birinchi parol
 
-            <section id="yuragimni-egasi" class="hidden">
-                <h2>Yuragimni Egasi</h2>
-                <p>Sen men uchun bebaho xazinasan.</p>
-            </section>
+    function checkPassword() {
+        const enteredPassword = document.getElementById("password").value;
+        const errorElement = document.getElementById("error");
+        const contentElement = document.getElementById("content");
+        const passwordField = document.getElementById("password");
+        const songButton = document.getElementById("songButton");
+        const ramazon = document.getElementById("ramazon");
 
-            <section id="hayotim" class="hidden">
-                <h2>Hayotim</h2>
-                <p>Sen mening hayotimdagi eng katta baxtsan!</p>
-            </section>
-        </div>
+        // Xatolikni tozalash
+        errorElement.textContent = "";
 
-        <!-- Ramazon oyi uchun effekt -->
-        <div id="ramazon" class="ramazon hidden">
-            <h2>Ramazon Oyi Muborak!</h2>
-            <p>Yaxshi niyat va saodat bilan</p>
-        </div>
-
-        <!-- Tugma va qo'shiq -->
-        <div id="songButton" class="hidden" style="text-align: center; margin-top: 30px;">
-            <button onclick="playSong()">O'zimni Sevglimni Tinglash</button>
-            <audio id="song" src="https://example.com/vohidjon-isoqov-ozimni-sevglim.mp3" preload="auto"></audio>
-        </div>
-
-        <footer>
-            © 2025 Sayt – Yuragimda | Ishlab chiqildi: ANVARBEK
-        </footer>
-    </div>
-
-    <script>
-        const correctPassword1 = "jinnivoyim"; // Birinchi parol
-
-        function checkPassword() {
-            const enteredPassword = document.getElementById("password").value;
-            const errorElement = document.getElementById("error");
-            const contentElement = document.getElementById("content");
-            const passwordField = document.getElementById("password");
-            const songButton = document.getElementById("songButton");
-            const ramazon = document.getElementById("ramazon");
-
-            // Xatolikni tozalash
-            errorElement.textContent = "";
-
-            // Parolni tekshirish
-            if (enteredPassword === correctPassword1) {
-                // Birinchi parol to'g'ri bo'lsa, asosiy kontentni ko'rsatish
-                document.getElementById("passwordForm").style.display = "none";
-                contentElement.style.display = "block";
-                document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
-                songButton.style.display = "block"; // Tugmani ko'rsatish
-                ramazon.style.display = "block"; // Ramazon effektini ko'rsatish
-            } else {
-                // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
-                passwordField.classList.add("error");
-                errorElement.textContent = "Xato parol! Iltimos, qayta urinib ko'ring.";
-            }
+        // Parolni tekshirish
+        if (enteredPassword === correctPassword1) {
+            // Birinchi parol to'g'ri bo'lsa, asosiy kontentni ko'rsatish
+            document.getElementById("passwordForm").style.display = "none";
+            contentElement.style.display = "block";
+            document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
+            songButton.style.display = "block"; // Tugmani ko'rsatish
+            ramazon.style.display = "block"; // Ramazon effektini ko'rsatish
+        } else {
+            // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
+            passwordField.classList.add("error");
+            errorElement.textContent = "Xato parol! Iltimos, qayta urinib ko'ring.";
         }
+    }
 
-        // Bo'limlarni ko'rsatish
-        function showSection(sectionId) {
-            document.querySelectorAll('section').forEach(section => {
-                section.style.display = 'none';
-            });
+    // Bo'limlarni ko'rsatish
+    function showSection(sectionId) {
+        document.querySelectorAll('section').forEach(section => {
+            section.style.display = 'none';
+        });
 
-            let section = document.getElementById(sectionId);
-            if (section) {
-                section.style.display = 'block';
-            }
+        let section = document.getElementById(sectionId);
+        if (section) {
+            section.style.display = 'block';
         }
+    }
 
-        // Qo'shiqni ijro etish
-        function playSong() {
-            const song = document.getElementById("song");
-            song.play();
-        }
-    </script>
+    // Qo'shiqni ijro etish
+    function playSong() {
+        document.getElementById('songPlayer').style.display = 'block'; // YouTube playerini ko'rsatish
+    }
+</script>
 
 </body>
 </html>
+
 
 
 
