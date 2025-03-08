@@ -215,7 +215,7 @@
     <div id="songButton" class="hidden" style="text-align: center; margin-top: 30px;">
         <button onclick="playSong()">O'zimni Sevglimni Tinglash</button>
         <div id="songPlayer" class="hidden" style="margin-top: 30px;">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/TQjbLOhmlMY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <!-- YouTube video iframe shu yerga joylashadi -->
         </div>
     </div>
 
@@ -267,13 +267,24 @@
 
     // Qo'shiqni ijro etish
     function playSong() {
-        document.getElementById('songPlayer').style.display = 'block'; // YouTube playerini ko'rsatish
+        const videoLink = "https://www.youtube.com/embed/TeQqD0lwJ28?si=5FzjeQHiMJLa4kR1"; // Yangi YouTube linki
+        const songPlayer = document.getElementById('songPlayer');
+        const iframe = document.createElement('iframe');
+        iframe.width = "560";
+        iframe.height = "315";
+        iframe.src = videoLink;
+        iframe.frameborder = "0";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowfullscreen = true;
+        
+        // Oldin mavjud iframe elementini olib tashlash
+        songPlayer.innerHTML = "";
+        
+        // Yangi iframe elementini qo'shish
+        songPlayer.appendChild(iframe);
+        songPlayer.style.display = 'block'; // YouTube playerini ko'rsatish
     }
 </script>
 
 </body>
 </html>
-
-
-
-
