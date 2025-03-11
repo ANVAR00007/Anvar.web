@@ -138,7 +138,6 @@
             margin: 0;
         }
 
-        /* Animatsiyalar */
         .section h2 {
             font-size: 2.5em;
             color: #d50000;
@@ -211,12 +210,14 @@
         <p>Yaxshi niyat va saodat bilan</p>
     </div>
 
-    <!-- Tugma va qo'shiq -->
-    <div id="songButton" class="hidden" style="text-align: center; margin-top: 30px;">
-        <button onclick="playSong()">O'zimni Sevglimni Tinglash</button>
-        <div id="songPlayer" class="hidden" style="margin-top: 30px;">
-            <!-- YouTube video iframe shu yerga joylashadi -->
-        </div>
+    <!-- Musiqalarni ijro qilish uchun tugmalar -->
+    <div id="musicButtons" style="text-align: center; margin-top: 30px;">
+        <button onclick="playSong('snowman')">Snowman</button>
+        <button onclick="playSong('kamin')">Kamin</button>
+    </div>
+
+    <div id="songPlayer" class="hidden" style="margin-top: 30px;">
+        <!-- YouTube video iframe shu yerga joylashadi -->
     </div>
 
     <footer>
@@ -232,7 +233,7 @@
         const errorElement = document.getElementById("error");
         const contentElement = document.getElementById("content");
         const passwordField = document.getElementById("password");
-        const songButton = document.getElementById("songButton");
+        const songButton = document.getElementById("musicButtons");
         const ramazon = document.getElementById("ramazon");
 
         // Xatolikni tozalash
@@ -265,9 +266,15 @@
         }
     }
 
-    // Qo'shiqni ijro etish
-    function playSong() {
-        const videoLink = "https://www.youtube.com/embed/TeQqD0lwJ28?si=5FzjeQHiMJLa4kR1"; // Yangi YouTube linki
+    // Musiqani ijro qilish
+    function playSong(song) {
+        let videoLink = "";
+        if (song === "snowman") {
+            videoLink = "https://www.youtube.com/embed/AnpxhP6vHaE?si=px22vlxcIOjaXFTx";
+        } else if (song === "kamin") {
+            videoLink = "https://www.youtube.com/embed/6SEr1XcZG4M?si=5P3cuqEkuqa5Tn7V";
+        }
+
         const songPlayer = document.getElementById('songPlayer');
         const iframe = document.createElement('iframe');
         iframe.width = "560";
@@ -288,3 +295,4 @@
 
 </body>
 </html>
+
