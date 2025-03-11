@@ -227,7 +227,7 @@
 </div>
 
 <script>
-    const correctPassword1 = "jinnivoyim"; // Birinchi parol
+    const correctPassword1 = "jinnivoyim"; // First password
 
     function checkPassword() {
         const enteredPassword = document.getElementById("password").value;
@@ -237,25 +237,25 @@
         const songButton = document.getElementById("musicButtons");
         const ramazon = document.getElementById("ramazon");
 
-        // Xatolikni tozalash
+        // Clear previous errors
         errorElement.textContent = "";
 
-        // Parolni tekshirish
+        // Check password
         if (enteredPassword === correctPassword1) {
-            // Birinchi parol to'g'ri bo'lsa, asosiy kontentni ko'rsatish
+            // If the first password is correct, show the main content
             document.getElementById("passwordForm").style.display = "none";
             contentElement.style.display = "block";
-            document.body.style.backgroundColor = "#ffffff"; // Sayt fonini o'zgartirish
-            songButton.style.display = "block"; // Tugmani ko'rsatish
-            ramazon.style.display = "block"; // Ramazon effektini ko'rsatish
+            document.body.style.backgroundColor = "#ffffff"; // Change background color
+            songButton.style.display = "block"; // Show the music buttons
+            ramazon.style.display = "block"; // Show Ramadan effect
         } else {
-            // Parol noto'g'ri bo'lsa, xato xabarini ko'rsatish
+            // If the password is incorrect, show an error message
             passwordField.classList.add("error");
-            errorElement.textContent = "Xato parol! Iltimos, qayta urinib ko'ring.";
+            errorElement.textContent = "Incorrect password! Please try again.";
         }
     }
 
-    // Bo'limlarni ko'rsatish
+    // Show sections based on the user's choice
     function showSection(sectionId) {
         document.querySelectorAll('section').forEach(section => {
             section.style.display = 'none';
@@ -267,9 +267,23 @@
         }
     }
 
-    // Musiqani ijro qilish
+    // Play the selected song
     function playSong(song) {
         let videoLink = "";
         if (song === "snowman") {
-            videoLink = "https://www.youtube.com/embed/AnpxhP6vHaE?si=px22vlxcIOjaX
+            videoLink = "https://www.youtube.com/embed/AnpxhP6vHaE?si=px22vlxcIOjaX";
+        } else if (song === "kamin") {
+            videoLink = "https://www.youtube.com/embed/2yXZ9AlXIjg";
+        } else if (song === "sevgilim") {
+            videoLink = "https://www.youtube.com/embed/ghbhIuN7q6k";
+        }
 
+        // Display the iframe with the YouTube video
+        const songPlayer = document.getElementById("songPlayer");
+        songPlayer.style.display = "block";
+        songPlayer.innerHTML = `<iframe width="560" height="315" src="${videoLink}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    }
+</script>
+
+</body>
+</html>
