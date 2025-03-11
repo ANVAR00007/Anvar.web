@@ -214,6 +214,7 @@
     <div id="musicButtons" style="text-align: center; margin-top: 30px;">
         <button onclick="playSong('snowman')">Snowman</button>
         <button onclick="playSong('kamin')">Kamin</button>
+        <button onclick="playSong('sevgilim')">O'zimni Sevglimni</button>
     </div>
 
     <div id="songPlayer" class="hidden" style="margin-top: 30px;">
@@ -270,29 +271,5 @@
     function playSong(song) {
         let videoLink = "";
         if (song === "snowman") {
-            videoLink = "https://www.youtube.com/embed/AnpxhP6vHaE?si=px22vlxcIOjaXFTx";
-        } else if (song === "kamin") {
-            videoLink = "https://www.youtube.com/embed/6SEr1XcZG4M?si=5P3cuqEkuqa5Tn7V";
-        }
-
-        const songPlayer = document.getElementById('songPlayer');
-        const iframe = document.createElement('iframe');
-        iframe.width = "560";
-        iframe.height = "315";
-        iframe.src = videoLink;
-        iframe.frameborder = "0";
-        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-        iframe.allowfullscreen = true;
-        
-        // Oldin mavjud iframe elementini olib tashlash
-        songPlayer.innerHTML = "";
-        
-        // Yangi iframe elementini qo'shish
-        songPlayer.appendChild(iframe);
-        songPlayer.style.display = 'block'; // YouTube playerini ko'rsatish
-    }
-</script>
-
-</body>
-</html>
+            videoLink = "https://www.youtube.com/embed/AnpxhP6vHaE?si=px22vlxcIOjaX
 
