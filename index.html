@@ -279,12 +279,38 @@
 
     // Show sections based on the user's choice
     function showSection(sectionId) {
-        document.querySelectorAll('section').forEach(section => {
+        // Hide all sections first
+        const sections = document.querySelectorAll('.container section');
+        sections.forEach(section => {
             section.style.display = 'none';
         });
+
+        // Show the selected section
         let section = document.getElementById(sectionId);
         if (section) {
             section.style.display = 'block';
         }
+
+        // Show Ramadan effect
+        if (sectionId === 'ramazonTaqvim') {
+            document.getElementById('ramazon').style.display = 'block';
+        } else {
+            document.getElementById('ramazon').style.display = 'none';
+        }
     }
-   
+
+    // Placeholder for playing songs (update with actual song URLs or YouTube embeds)
+    function playSong(songName) {
+        const songPlayer = document.getElementById("songPlayer");
+        if (songName === 'snowman') {
+            songPlayer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/7jm38FXkaF0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        } else if (songName === 'kamin') {
+            songPlayer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/QxIYZmClLvE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        } else if (songName === 'sevgilim') {
+            songPlayer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/JQbQ_zkByH8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        }
+        songPlayer.style.display = 'block';
+    }
+</script>
+</body>
+</html>
