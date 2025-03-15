@@ -347,23 +347,84 @@
             section.style.display = 'block';
         }
     }
+<h3>Qo'shiqlarni Tinglang</h3>
+<select onchange="playSong(this.value)">
+    <option value="">Qo'shiq tanlang</option>
+    <option value="snowman">Snowman - Sia</option>
+    <option value="kamin">Kamin - Shahzoda</option>
+    <option value="sevgilim">Sevgilim - Munisa Rizayeva</option>
+    <option value="yurak">Yurak - Jony</option>
+    <option value="ona">Ona - Shohruhxon</option>
+    <option value="ayamay">Ayamay - Shohruhxon</option>
+    <option value="believer">Believer - Imagine Dragons</option>
+    <option value="senorita">Señorita - Shawn Mendes, Camila Cabello</option>
+    <option value="perfect">Perfect - Ed Sheeran</option>
+    <option value="despacito">Despacito - Luis Fonsi</option>
+    <option value="safar">Safar - Sardor Rahimxon</option>
+    <option value="dunyo">Dunyo - Nilufar Usmonova</option>
+    <option value="yolgiz">Yolg'iz - Ulug'bek Rahmatullayev</option>
+    <option value="hurrem">Hurrem - Shahzoda</option>
+    <option value="sogindim">Sog'indim - Rayhon</option>
+    <option value="toylar">Toylar muborak - Yulduz Usmonova</option>
+    <option value="vatan">Vatan - Gulsanam Mamazoitova</option>
+    <option value="qizgaldok">Qizg'aldoq - Bolalar</option>
+    <option value="sozlar">So'zlar - Shoxrux</option>
+    <option value="tanho">Tanho - Sahro</option>
+    <option value="sadoqat">Sadoqat - Sevara Nazarkhan</option>
+    <option value="kozum">Ko'zum - Davron Ergashev</option>
+    <option value="sevgim">Sevgim - Kaniza</option>
+    <option value="onajon">Onajon - Botir Qodirov</option>
+    <option value="sevgili">Sevgili - Lola</option>
+    <option value="ajdodlar">Ajdodlar ruhi - Ozodbek Nazarbekov</option>
+    <option value="gullar">Gullar - Sharof Muqimov</option>
+    <option value="bahor">Bahor - Ziyoda</option>
+    <option value="ayirmagin">Ayirmagin - Setora</option>
+    <option value="arman">Arman - Otabek Mutalxo'jayev</option>
+</select>
+<div id="songPlayer" style="display:none; margin-top:20px;"></div>
 
-    // Play the selected song
+<script>
     function playSong(song) {
         let videoLink = "";
-        if (song === "snowman") {
-            videoLink = "https://www.youtube.com/embed/AnpxhP6vHaE?si=px22vlxcIOjaX";
-        } else if (song === "kamin") {
-            videoLink = "https://youtube.com/6SEr1XcZG4M?si=1f9O-7zIytIC1oIQ";
-        } else if (song === "sevgilim") {
-            videoLink = "https://youtube.com/TeQqD0lwJ28?si=IKGMXT-kUtPILkd4";
-        }
-        // Display the iframe with the YouTube video
+        const songs = {
+            "snowman": "AnpxhP6vHaE",
+            "kamin": "6SEr1XcZG4M",
+            "sevgilim": "TeQqD0lwJ28",
+            "yurak": "8Jie4LSlhNY",
+            "ona": "LlP1h7Y1y3k",
+            "ayamay": "dQw4w9WgXcQ",
+            "believer": "7wtfhZwyrcc",
+            "senorita": "Pkh8UtuejGw",
+            "perfect": "2Vv-BfVoq4g",
+            "despacito": "kJQP7kiw5Fk",
+            "safar": "Z0WjnQ2Ub_s",
+            "dunyo": "qQ1VRb8jBdI",
+            "yolgiz": "V7XcB8QlSPs",
+            "hurrem": "yN1eVjgrb2o",
+            "sogindim": "9WQd9EGSt9A",
+            "toylar": "3YvMEhUB8Z8",
+            "vatan": "vM6kY4h77Z8",
+            "qizgaldok": "sv4yE2gSAxE",
+            "sozlar": "ZHskQfJZLJw",
+            "tanho": "6UgmdWuHnZY",
+            "sadoqat": "M1V6vc5Rd_s",
+            "kozum": "CLo2AizxJ6g",
+            "sevgim": "bpvP3fyXbqM",
+            "onajon": "HdG0Mb4H3Cc",
+            "sevgili": "3TBo0b1t0oc",
+            "ajdodlar": "PVvNMbWPUZY",
+            "gullar": "4oYM_dXlzy4",
+            "bahor": "XsI7HzZjfCk",
+            "ayirmagin": "o8u2eOslXXw",
+            "arman": "cUp5m5AIlxI"
+        };
+        videoLink = `https://www.youtube.com/embed/${songs[song]}?autoplay=1`;
         const songPlayer = document.getElementById("songPlayer");
         songPlayer.style.display = "block";
-        songPlayer.innerHTML = `<iframe width="560" height="315" src="${videoLink}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        songPlayer.innerHTML = `<iframe width="560" height="315" src="${videoLink}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     }
 </script>
+
 
 </body>
 </html>
