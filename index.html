@@ -260,11 +260,19 @@
         </div>
     </div>
 
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Player</title>
+</head>
+<body>
+    <div id="songPlayer" style="display: none;"></div>
     <!-- Musiqalarni ijro qilish uchun tugmalar -->
     <div id="musicButtons" style="text-align: center; margin-top: 30px;">
         <button onclick="playSong('snowman')">Snowman</button>
         <button onclick="playSong('kamin')">Kamin</button>
-        <button onclick="playSong('sevgilim')">O'zimni Sevglimni</button>
+        <button onclick="playSong('ataylab')">Ataylab</button>
+        <button onclick="playSong('ayamay')">Ayamay</button>
     </div>
 
     <div id="songPlayer" class="hidden" style="margin-top: 30px;">
@@ -327,18 +335,30 @@
         }
     }
 
-    // Placeholder for playing songs (update with actual song URLs or YouTube embeds)
-    function playSong(songName) {
-        const songPlayer = document.getElementById("songPlayer");
-        if (songName === 'snowman') {
-            songPlayer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/7jm38FXkaF0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-        } else if (songName === 'kamin') {
-            songPlayer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/QxIYZmClLvE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-        } else if (songName === 'sevgilim') {
-            songPlayer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/JQbQ_zkByH8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Player</title>
+<body>
+    <div id="songPlayer" style="display: none;"></div>
+    <script>
+        function playSong(songName) {
+            const songPlayer = document.getElementById("songPlayer");
+            const songs = {
+                'snowman': 'https://www.youtube.com/embed/gset79KMmt0?si=5_7CCl5ELWzNNOv_',
+                'kamin': 'https://www.youtube.com/embed/6SEr1XcZG4M?si=1aKHYokC5YydSkMn',
+                'ataylab': 'https://www.youtube.com/embed/sNC8GPvxzd4?si=UfewaA8lMnBIlRqg',
+                'ayamay': 'https://www.youtube.com/embed/WZDInkXSmtw?si=5jNUQDhkZf9FsFZ0'
+            };
+            
+            if (songs[songName]) {
+                songPlayer.innerHTML = `<iframe width="560" height="315" src="${songs[songName]}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                songPlayer.style.display = 'block';
+            } else {
+                alert('Bunday qo‘shiq topilmadi!');
+            }
         }
-        songPlayer.style.display = 'block';
-    }
-</script>
+    </script>
 </body>
+</html>
 </html>
