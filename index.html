@@ -110,6 +110,16 @@
         .hidden {
             display: none;
         }
+        .word {
+            font-weight: bold;
+            font-style: italic;
+            color: #d50000;
+            transition: all 0.3s ease;
+        }
+        .word:hover {
+            color: #b71c1c;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
         #songPlayerSection {
             margin-top: 40px;
             animation: slideIn 1s ease-out;
@@ -181,12 +191,12 @@
     <div class="container">
         <section id="asalim" class="hidden">
             <h2>Asalim</h2>
-            <p>Sen mening qalbimning eng yorqin yulduzisan. Sening ko'zingda dunyo barcha go'zalliklari bor. Mening jonimni siz sevishingiz uchun tug'ildim.</p>
+            <p><span class="word">Men</span> <span class="word">Seni</span> <span class="word">Sevaman</span> <span class="word">Zinnuram</span> <span class="word">yorqin</span> <span class="word">O'zimni</span></p>
         </section>
 
         <section id="hayotim" class="hidden">
             <h2>Hayotim</h2>
-            <p>Hayotimda seni sevishdan boshqacha hech narsa muhim emas. Sen men uchun har doim birinchi o'rindasan. Sen bilan o'tgan har bir kun mening hayotimdagi eng baxtli lahzadir.</p>
+            <p><span class="word">Sen</span> <span class="word">Albatta</span> <span class="word">Meniki</span> <span class="word">Bo'lasam</span> <span class="word">Hayotim</span> <span class="word">Jonim</span> <span class="word">Yagonam</span> <span class="word">Zinnuram</span></p>
         </section>
 
         <section id="ramazonTaqvim" class="hidden">
@@ -256,6 +266,16 @@
             songPlayer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/sNC8GPvxzd4?si=nhKY4U34pGFORW8v" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
         }
     }
+
+    function styleText() {
+        const sections = document.querySelectorAll("p");
+        sections.forEach(paragraph => {
+            let words = paragraph.innerHTML.split(" ");
+            paragraph.innerHTML = words.map(word => `<span class="word">${word}</span>`).join(" ");
+        });
+    }
+
+    window.onload = styleText;
 </script>
 
 </body>
