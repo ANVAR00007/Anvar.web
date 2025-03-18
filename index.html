@@ -263,102 +263,75 @@
    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Song Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        #musicButtons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        #passwordPrompt input {
+            padding: 8px;
+            font-size: 16px;
+        }
+        #passwordPrompt button {
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div id="songPlayer" style="display: none;"></div>
-    <!-- Musiqalarni ijro qilish uchun tugmalar -->
-    <div id="musicButtons" style="text-align: center; margin-top: 30px;">
-        <button onclick="playSong('snowman')">Snowman</button>
-        <button onclick="playSong('kamin')">Kamin</button>
-        <button onclick="playSong('ataylab')">Ataylab</button>
-        <button onclick="playSong('ayamay')">Ayamay</button>
+    <div id="passwordPrompt">
+        <input type="password" id="passwordInput" placeholder="Parolni kiriting" autofocus>
+        <button onclick="checkPassword()">Kirish</button>
+    </div>
+    <div id="content" style="display: none;">
+        <div id="songPlayer" style="margin-top: 20px;"></div>
+        <div id="musicButtons">
+            <button onclick="playSong('snowman')">Snowman</button>
+            <button onclick="playSong('kamin')">Kamin</button>
+            <button onclick="playSong('ataylab')">Ataylab</button>
+            <button onclick="playSong('ayamay')">Ayamay</button>
+        </div>
     </div>
 
-    <div id="songPlayer" class="hidden" style="margin-top: 30px;">
-        <!-- YouTube video iframe shu yerga joylashadi -->
-    </div>
-
-    <footer>
-        © 2025 Sayt – Yuragimda | Ishlab chiqildi: ANVARBEK
-    </footer>
-</div>
-
-<script>
-    const correctPassword1 = "jinnivoyim"; // First password
-
-    function checkPassword() {
-        const enteredPassword = document.getElementById("password").value;
-        const errorElement = document.getElementById("error");
-        const contentElement = document.getElementById("content");
-        const passwordField = document.getElementById("password");
-        const songButton = document.getElementById("musicButtons");
-        const ramazon = document.getElementById("ramazon");
-
-        // Clear previous errors
-        errorElement.textContent = "";
-
-        // Check password
-        if (enteredPassword === correctPassword1) {
-            // If the password is correct, show the main content
-            document.getElementById("passwordForm").style.display = "none";
-            contentElement.style.display = "block";
-            document.body.style.backgroundColor = "#ffffff"; // Change background color
-            songButton.style.display = "block"; // Show the music buttons
-            ramazon.style.display = "block"; // Show Ramadan effect
-        } else {
-            // If the password is incorrect, show an error message
-            passwordField.classList.add("error");
-            errorElement.textContent = "Incorrect password! Please try again.";
-        }
-    }
-
-    // Show sections based on the user's choice
-    function showSection(sectionId) {
-        // Hide all sections first
-        const sections = document.querySelectorAll('.container section');
-        sections.forEach(section => {
-            section.style.display = 'none';
-        });
-
-        // Show the selected section
-        let section = document.getElementById(sectionId);
-        if (section) {
-            section.style.display = 'block';
-        }
-
-        // Show Ramadan effect
-        if (sectionId === 'ramazonTaqvim') {
-            document.getElementById('ramazon').style.display = 'block';
-        } else {
-            document.getElementById('ramazon').style.display = 'none';
-        }
-    }
-
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Song Player</title>
-<body>
-    <div id="songPlayer" style="display: none;"></div>
     <script>
+        const correctPassword = "jinnivoyim";
+        const songs = {
+            'snowman': 'https://www.youtube.com/embed/gset79KMmt0?si=5_7CCl5ELWzNNOv_',
+            'kamin': 'https://www.youtube.com/embed/6SEr1XcZG4M?si=1aKHYokC5YydSkMn',
+            'ataylab': 'https://www.youtube.com/embed/sNC8GPvxzd4?si=UfewaA8lMnBIlRqg',
+            'ayamay': 'https://www.youtube.com/embed/WZDInkXSmtw?si=5jNUQDhkZf9FsFZ0'
+        };
+
+        function checkPassword() {
+            const input = document.getElementById("passwordInput").value;
+            if (input === correctPassword) {
+                document.getElementById("passwordPrompt").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            } else {
+                alert("Noto‘g‘ri parol! Iltimos, qayta urinib ko‘ring.");
+            }
+        }
+
         function playSong(songName) {
             const songPlayer = document.getElementById("songPlayer");
-            const songs = {
-                'snowman': 'https://www.youtube.com/embed/gset79KMmt0?si=5_7CCl5ELWzNNOv_',
-                'kamin': 'https://www.youtube.com/embed/6SEr1XcZG4M?si=1aKHYokC5YydSkMn',
-                'ataylab': 'https://www.youtube.com/embed/sNC8GPvxzd4?si=UfewaA8lMnBIlRqg',
-                'ayamay': 'https://www.youtube.com/embed/WZDInkXSmtw?si=5jNUQDhkZf9FsFZ0'
-            };
-            
             if (songs[songName]) {
                 songPlayer.innerHTML = `<iframe width="560" height="315" src="${songs[songName]}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                songPlayer.style.display = 'block';
             } else {
                 alert('Bunday qo‘shiq topilmadi!');
             }
         }
     </script>
 </body>
-</html>
 </html>
