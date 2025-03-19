@@ -13,7 +13,7 @@
             background-color: #f5f5f5;
             color: #333;
             transition: all 0.5s ease;
-            box-sizing: border-box; /* Make sure padding/margins are included in the element's total width/height */
+            box-sizing: border-box; 
         }
 
         .container {
@@ -49,7 +49,7 @@
             font-size: 20px;
             border: 2px solid #ddd;
             border-radius: 10px;
-            width: 100%; /* Make input full width on small screens */
+            width: 100%;
             max-width: 300px;
             margin-top: 20px;
             outline: none;
@@ -91,7 +91,7 @@
             margin: 30px auto;
             padding: 20px;
             background-color: #fff;
-            width: 100%; /* Full width for small screens */
+            width: 100%;
             max-width: 1000px;
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
@@ -100,12 +100,11 @@
             animation: fadeIn 1.5s ease-in-out;
         }
 
-        /* Mobile-friendly styles */
         @media screen and (max-width: 768px) {
             header h1 {
-                font-size: 2.5em; /* Smaller header on mobile */
+                font-size: 2.5em;
             }
-            
+
             .nav-links a {
                 padding: 10px 20px;
                 font-size: 16px;
@@ -121,24 +120,18 @@
             }
 
             #password {
-                width: 90%; /* Make password field more responsive */
+                width: 90%;
                 max-width: 350px;
             }
 
             .section {
-                width: 90%; /* Sections take more width on smaller screens */
+                width: 90%;
             }
         }
 
-        /* Animations */
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(0); }
         }
 
         .word {
@@ -201,7 +194,15 @@
                         <th>Saharlik</th>
                         <th>Iftorlik</th>
                     </tr>
-<tr><td>1</td><td>Sha</td><td>1 Mart 2025</td><td>05:54</td><td>18:31</td></tr>
+<table border="1">
+  <tr>
+    <th>Kun</th>
+    <th>Xafta kuni</th>
+    <th>Sana</th>
+    <th>Saharlik</th>
+    <th>Iftorlik</th>
+  </tr>
+  <tr><td>1</td><td>Sha</td><td>1 Mart 2025</td><td>05:54</td><td>18:31</td></tr>
   <tr><td>2</td><td>Ya</td><td>2 Mart 2025</td><td>05:52</td><td>18:33</td></tr>
   <tr><td>3</td><td>Du</td><td>3 Mart 2025</td><td>05:51</td><td>18:34</td></tr>
   <tr><td>4</td><td>Se</td><td>4 Mart 2025</td><td>05:49</td><td>18:35</td></tr>
@@ -231,6 +232,8 @@
   <tr><td>28</td><td>Ju</td><td>28 Mart 2025</td><td>05:10</td><td>19:00</td></tr>
   <tr><td>29</td><td>Sha</td><td>29 Mart 2025</td><td>05:09</td><td>19:01</td></tr>
   <tr><td>30</td><td>Ya</td><td>30 Mart 2025</td><td>05:09</td><td>19:01</td></tr>
+</table>
+
                 </tbody>
             </table>
             <div class="duolar">
@@ -300,3 +303,4 @@
 
 </body>
 </html>
+
