@@ -201,8 +201,7 @@
                         <th>Saharlik</th>
                         <th>Iftorlik</th>
                     </tr>
-                </thead>
-                <tbody>
+<tr><td>1</td><td>Sha</td><td>1 Mart 2025</td><td>05:54</td><td>18:31</td></tr>
   <tr><td>2</td><td>Ya</td><td>2 Mart 2025</td><td>05:52</td><td>18:33</td></tr>
   <tr><td>3</td><td>Du</td><td>3 Mart 2025</td><td>05:51</td><td>18:34</td></tr>
   <tr><td>4</td><td>Se</td><td>4 Mart 2025</td><td>05:49</td><td>18:35</td></tr>
@@ -271,11 +270,11 @@
 
     function showSection(sectionId) {
         const sections = document.querySelectorAll('.container section');
-        sections.forEach(section => section.classList.add('hidden'));
+        sections.forEach(section => section.style.display = 'none'); // Hide all sections
 
         const selectedSection = document.getElementById(sectionId);
         if (selectedSection) {
-            selectedSection.classList.remove('hidden');
+            selectedSection.style.display = 'block'; // Show selected section
         }
     }
 
